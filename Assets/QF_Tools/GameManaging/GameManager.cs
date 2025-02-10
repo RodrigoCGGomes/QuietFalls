@@ -1,61 +1,90 @@
 using QuietFallsGameManaging;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace QuietFallsGameManaging
 {
     public class GameManager : MonoBehaviour
     {
+        #region Variables
         public static GameManager instance;
+
         private GameInputManager inputManager;
-        
+        private GameStateManager stateManager;
+        private GamePlayerManager playerManager;
+
+        private GameDebugger gameDebugger;
+
+        #endregion
+
+        #region Entry Points
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void OnGameStart()
+        private static void OnGameStart() // Called once when Unity starts the game.
         {
-            EnsureSingleton();
+            if (instance != null)
+            {
+                Debug.LogError("Somehow more than one GameInputManager instance exists.");
+                return;
+            }
+
+            
+
+            SpawnGameManagers();
+            Debug.Log("GameManager's OnGameStart() procedure success.");
             SetUpGameManagers();
-        }
+            OnEverySceneLoad();
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void OnEverySceneLoad()
-        {
-            Debug.Log("A new scene has loaded.");
-        }
+            
+        } 
 
-        private void Awake()
+        private static void OnEverySceneLoad() // Called every time a new scene loads.
         {
-            Debug.Log("GameManagerInScene");
-        }
+            //GameManager calls this first time, then GameSceneManager takes over.
+        } 
+
+        #endregion
 
         #region Instructions
-        private static void EnsureSingleton()
+
+        private static void SpawnGameManagers() // Instantiate the GameManager (container) Gameobject.
         {
-            Debug.Log("EnsureSingleton");
-            if (instance == null) //If there is no GameManager instance, create the GameManager
-            {
-                GameObject gameManagerContainer = new GameObject("GameManagers");
-                GameObject gameManagerGO = new GameObject("GameManager");
-                GameObject gameInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/GameInputManager"));
+            #region Instantiate Gameobjects
+            GameObject globalContainerGO = new GameObject("GAME MANAGERS");
 
 
-                instance = gameManagerGO.AddComponent<GameManager>();
-                gameManagerGO.transform.parent = gameManagerContainer.transform;
+            GameObject gameManagerGO = new GameObject("Game Manager");
+            GameObject gameInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/GameInputManager"));
+            GameObject gameStateManagerGO = new GameObject("Game State Manager");
+            GameObject gamePlayerManagerGO = new GameObject("Game Player Manager");
+            GameObject gameDebuggerManagerGO = new GameObject("Game Debugger");
 
-                instance.inputManager = gameInputManagerGO.GetComponent<GameInputManager>();
-                gameInputManagerGO.transform.parent = gameManagerContainer.transform;
+            instance = gameManagerGO.AddComponent<GameManager>();
+            gameManagerGO.transform.parent = globalContainerGO.transform;
 
-                DontDestroyOnLoad(gameManagerContainer);
-            }
-        }
-        private static void SetUpGameManagers() //First time setup of GameManager gameobject.
+            instance.inputManager = gameInputManagerGO.GetComponent<GameInputManager>();
+            gameInputManagerGO.transform.parent = globalContainerGO.transform;
+
+            instance.stateManager = gameStateManagerGO.AddComponent<GameStateManager>();
+            gameStateManagerGO.transform.parent = globalContainerGO.transform;
+
+            instance.playerManager = gamePlayerManagerGO.AddComponent<GamePlayerManager>();
+            gamePlayerManagerGO.transform.parent = globalContainerGO.transform;
+
+            instance.gameDebugger = gameDebuggerManagerGO.AddComponent<GameDebugger>();
+
+            #endregion
+            
+            DontDestroyOnLoad(globalContainerGO);
+        } 
+
+        private static void SetUpGameManagers() // Calls their initialization instructions
         {
             GameManager.instance.inputManager.Initialize();
-        }
-        private void SceneStartDueDiligence() //Checks that ought to be performed at every scene start.
-        { 
-            
-        }
+            GameManager.instance.stateManager.Initialize();
+            GameManager.instance.playerManager.Initialize();
+            GameManager.instance.gameDebugger.Initialize();
+        } 
         #endregion
     }
+
 }

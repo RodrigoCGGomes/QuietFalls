@@ -23,7 +23,7 @@ public class ControlsTestActor : MonoBehaviour
         maximumRotationValue = 40f;
         buttonLerpSpeed = 40f;
 
-        GameInputManager.instance.OnJumpEvent += OnJumpMethod;
+        GameInputManager.instance.OnConfirmEvent += OnConfirmMethod;
         child1 = transform.GetChild(0).transform.gameObject;
         child2 = child1.transform.GetChild(0).transform.gameObject;
         child1PosInitial = child1.transform.localPosition;
@@ -34,7 +34,7 @@ public class ControlsTestActor : MonoBehaviour
 
     private void OnDisable()
     {
-        GameInputManager.instance.OnJumpEvent -= OnJumpMethod;
+        GameInputManager.instance.OnConfirmEvent -= OnConfirmMethod;
     }
 
     private void Update()
@@ -90,7 +90,7 @@ public class ControlsTestActor : MonoBehaviour
 
 
 
-    private void OnJumpMethod(InputAction.CallbackContext context)
+    private void OnConfirmMethod(InputAction.CallbackContext context)
     {
         // Filter for specific phases
         if (context.phase == InputActionPhase.Started)

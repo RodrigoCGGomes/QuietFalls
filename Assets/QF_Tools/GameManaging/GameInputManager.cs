@@ -2,46 +2,53 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-namespace QuietFallsGameManaging {
-    public class GameInputManager : MonoBehaviour 
+namespace QuietFallsGameManaging
+{
+    public class GameInputManager : MonoBehaviour
     {
         public static GameInputManager instance;
         private PlayerInput playerInput;
 
-        public Vector2 moveValue, moveValueSmoothed;
+        [Header("Analog Inputs")]
+        public Vector2 moveValue;
+        public Vector2 moveValueSmoothed;
         public Vector2 lookValue, lookValueSmoothed;
 
-        public event Action<InputAction.CallbackContext> OnJumpEvent;
+        public event Action<InputAction.CallbackContext> OnMoveEvent;
+        public event Action<InputAction.CallbackContext> OnConfirmEvent;
+        public event Action<InputAction.CallbackContext> OnGoBackEvent;
         public event Action<InputAction.CallbackContext> OnPauseEvent;
 
         public void Initialize()
         {
             EnsureSingleton();
+            RenameGameObject("Game Input Manager"); //Remove '(Clone)' suffix
         }
 
-        #region Calls from foreign objects
-        public static void RequestToBeSelected(GameObject originGO)
+        #region Public Static Methods
+
+        public static void RequestToBeSelected(GameObject originGO) //A Selectable is asking to be selected by QF_SelectionHandler's OnPointerEnter().
         {
-            //A Selectable is asking to be selected by QF_SelectionHandler's OnPointerEnter().
             EventSystem.current.SetSelectedGameObject(originGO.transform.gameObject);
-
         }
+
         #endregion
 
         #region Unity Monobehaviour Calls
+
         private void Update()
         {
             moveValueSmoothed = Vector2.Lerp(moveValueSmoothed, moveValue, 50f * Time.deltaTime);
             lookValueSmoothed = Vector2.Lerp(lookValueSmoothed, lookValue, 50f * Time.deltaTime);
         }
+
         #endregion
 
-        #region Private Instructions 
+        #region Private Instructions
+
         private void EnsureSingleton()
         {
-            Debug.Log("GameInputManager.EnsureSingleton();");
             if (instance != null && instance != this)
             {
                 Debug.LogError("Somehow more than one GameInputManager instance exists. Being deleted.");
@@ -63,6 +70,11 @@ namespace QuietFallsGameManaging {
                 Debug.LogError("Couldn't find the game InputAction from Resources folder.");
             }
         }
+        private void RenameGameObject(string newName)
+        {
+            this.gameObject.name = newName;
+        }
+
         #endregion
 
 
@@ -71,15 +83,22 @@ namespace QuietFallsGameManaging {
         {
             //Let's read and process the values
             moveValue = context.ReadValue<Vector2>();
+            //Debug.Log($"{context.control.device.deviceId} ,  {context.control.device.displayName} , {context.control.device.layout}");
+            OnMoveEvent?.Invoke(context);
         }
         public void OnLook(InputAction.CallbackContext context)
         {
             //Let's read and process the values
             lookValue = context.ReadValue<Vector2>();
         }
-        public void OnJump(InputAction.CallbackContext context)
+        public void OnConfirm(InputAction.CallbackContext context)
         {
-            OnJumpEvent?.Invoke(context);
+            OnConfirmEvent?.Invoke(context);
+            //Debug.Log($"{context.control.device.deviceId} ,  {context.control.device.displayName}");
+        }
+        public void OnGoBack(InputAction.CallbackContext context)
+        {
+            OnGoBackEvent?.Invoke(context);
         }
         public void OnPause(InputAction.CallbackContext context)
         {

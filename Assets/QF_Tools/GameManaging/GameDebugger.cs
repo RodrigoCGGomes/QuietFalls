@@ -18,4 +18,3 @@ public class GameDebugger : MonoBehaviour
         GameDebugger.instance.debugLevel = paramDebugLevel;
     }
 }
-

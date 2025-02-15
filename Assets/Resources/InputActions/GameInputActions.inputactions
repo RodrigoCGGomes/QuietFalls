@@ -1,0 +1,45 @@
+{
+    "name": "GameInputActions",
+    "maps": [
+        {
+            "name": "GamePlayer",
+            "id": "7a70f3ae-a1c4-43a5-889e-d12f9ac989d9",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "603a05cf-206b-40c1-b2db-156b34d15b8e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8d41c3f2-5d16-4cb5-b351-e87a3f36edd9",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "724257d9-5cef-47a9-962a-8dd7ef672df8",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

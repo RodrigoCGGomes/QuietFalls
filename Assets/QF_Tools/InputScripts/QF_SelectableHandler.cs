@@ -12,6 +12,7 @@ namespace QF_Tools {
         IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
     {
         #region Variables
+
         //Dinamically Set at start
         private enum SelectableType {NotAssesed, Unknown, NoSelectableComponent, Button, Slider}
 
@@ -25,7 +26,6 @@ namespace QF_Tools {
         public enum AnimationType { ZoomIn, NoAnimation }
         public AnimationType animationType;
         public Image optionalHighlightImage;
-
         #endregion
 
         #region MonoBehaviour Calls
@@ -42,12 +42,17 @@ namespace QF_Tools {
         }
         private void OnEnable()
         {
-            Debug.LogWarning($"Enabled Selectable {this.gameObject.name}");
+            
         }
         private void OnDisable()
         {
             Debug.LogWarning($"Disabled Selectable {this.gameObject.name}");
             transform.localScale = initialScale;
+
+            if (optionalHighlightImage != null)
+            {
+                optionalHighlightImage.enabled = false;
+            }
         }
 
         #endregion

@@ -36,7 +36,7 @@ namespace QuietFallsGameManaging
         {
             if (change == InputDeviceChange.Enabled)
             {
-                Debug.Log($"New device detected: {device.displayName}");
+                //Debug.Log($"New device detected: {device.displayName}");
             }
         }
         public void AssignPlayerToDevice(InputDevice dev, GameDevice.AssignedPlayer player)

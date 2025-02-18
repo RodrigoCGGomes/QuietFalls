@@ -6,8 +6,9 @@ public class CharacterEngine : MonoBehaviour
 {
 
     [Header ("Character Engine")]
-    public NavMeshAgent agent;
     public CharacterEngineState currentState;
+
+    private NavMeshAgent agent;
 
 
     private void Awake()
@@ -35,7 +36,7 @@ public class CharacterEngine : MonoBehaviour
     {
         if (currentState == CharacterEngineState.FreeToMove)
         {
-            agent.Move(direction * speed * Time.deltaTime);
+            agent.velocity = (direction * speed); // voltar com o time.deltatime no lugar do 0.1f
         }
         //Debug.LogWarning("CharacterEngineMove");
     }

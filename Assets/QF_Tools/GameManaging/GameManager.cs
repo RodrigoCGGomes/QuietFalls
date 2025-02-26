@@ -14,6 +14,7 @@ namespace QuietFallsGameManaging
         private GameStateManager stateManager;
         private GamePlayerManager playerManager;
 
+
         private GameDebugger gameDebugger;
 
         public PlayerInputManager playerInputManager;
@@ -79,6 +80,7 @@ namespace QuietFallsGameManaging
 
             instance.playerInputManager = playerInputManagerGO.GetComponent<PlayerInputManager>();
             playerInputManagerGO.transform.parent = globalContainerGO.transform;
+
 
 
             #endregion

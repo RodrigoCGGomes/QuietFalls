@@ -304,10 +304,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 8
+  m_Speed: 5000
+  m_Acceleration: 5000
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 5000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -352,8 +352,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  playerCamera: {fileID: 5657391963848099162}
-  defaultMoveSpeed: 1
+  framerate: 20
+  overrideFramerate: 0
+  playerCamera: {fileID: 8406580235431720984}
+  defaultMoveSpeed: 8
+  rotationSmoothingSpeed: 10
+  moveInputVector: {x: 0, y: 0}
+  moveInputAngle: 0
+  playerRelRot: {x: 0, y: 0, z: 0, w: 0}
+  playerRelRotSmooth: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4482052338424461316
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2909133292381553956}
   - component: {fileID: 6549218860122061909}
-  - component: {fileID: 5657391963848099162}
+  - component: {fileID: 8406580235431720984}
   - component: {fileID: 3680965165930267540}
   m_Layer: 0
   m_Name: GamePlayerCamera
@@ -381,8 +388,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4482052338424461316}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.1, y: 1.5071331, z: 11.7}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -439,7 +446,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &5657391963848099162
+--- !u!114 &8406580235431720984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -448,21 +455,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4482052338424461316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3f590a0ce0dd0408950e0755cd8fbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 59af06ac26fe7744a89e375d7c788cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8727827434511733485}
-  cameraHeight: 1.5
-  rotationSpeed: 140
-  smoothing: 0.08
-  orbitDistance: 10
-  orbitZoomSpeed: 4
-  minPitchAngle: -20
-  maxPitchAngle: 50
-  yaw: 0
-  pitch: 0
-  orbitDistanceMoveSpeed: 0
-  isStickActive: 0
+  playerItBelongsTo: {fileID: 5909388195487069499}
 --- !u!114 &3680965165930267540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +483,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0

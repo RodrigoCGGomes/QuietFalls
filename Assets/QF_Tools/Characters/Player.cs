@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class is attached to the player prefab to make it playable.
+/// TODO: 
 /// </summary>
 public class Player : CharacterEngine
 {
@@ -33,14 +34,17 @@ public class Player : CharacterEngine
     {
         this.Tick();
         playerCamera.currentRig.Tick();
-    }
-    private void OnEnable ()
-    {
-        //GameManager.instance.playerInputManager.JoinPlayer();
+
+        //Temporary
         if (overrideFramerate == true)
         {
             Application.targetFrameRate = framerate;
         }
+    }
+    private void OnEnable ()
+    {
+        //GameManager.instance.playerInputManager.JoinPlayer();
+
     }
     private void OnDisable()
     {
@@ -48,38 +52,54 @@ public class Player : CharacterEngine
     }
     #endregion
 
-    #region Private Methods
-    private void Tick() 
+    // Run Player Logic
+    private void Tick()
     {
-        moveInputAngle = CalculateAngleFromVector2(moveInputVector);
-        playerRelRot = CalculateRelativeRotation(playerCamera.transform.rotation, moveInputAngle);
+        CalculateMoveInputAngle();
+        CalculateRelativeRotation();
+        CalculateMoveValueSmooth();
 
-        moveValueSmooth = Vector2.Lerp(moveValueSmooth, moveValue, 0.1f * Time.deltaTime);
-
-        Move(playerRelRot.normalized * Vector3.forward, defaultMoveSpeed * moveValue.magnitude);
+        base.Move(playerRelRot.normalized * Vector3.forward, defaultMoveSpeed * moveValue.magnitude);
 
         //Starting to implement character rotation:
         playerRelRotSmooth = Quaternion.Slerp(playerRelRotSmooth, playerRelRot, rotationSmoothingSpeed * Time.deltaTime * moveValue.magnitude);
         transform.rotation = playerRelRotSmooth;
     }
-    private float CalculateAngleFromVector2 (Vector2 direction) //Converts a Vector2 into a 0-360º Value
+
+    #region Private Methods
+    /// <summary>
+    /// Calculates the direction of the WASD input (moveInputVector) and
+    /// assigns it into moveInputAngle as a 0-360 value.
+    /// </summary>
+    private void CalculateMoveInputAngle()
     {
-        float result = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg; //It's 90º off
+        float result = Mathf.Atan2(-moveInputVector.y, moveInputVector.x) * Mathf.Rad2Deg; //It's 90º off
         result = (result + 450f) % 360f; //90º Degree Correction
-        return result;
-    }
-    private Quaternion CalculateRelativeRotation (Quaternion cameraRotation, float angle)
-    {
-        Quaternion result = Quaternion.Euler(0f, cameraRotation.eulerAngles.y + angle, 0f);
-        return result;
+        moveInputAngle =  result;
     }
 
+    /// <summary>
+    /// Calculates the relative direction between the player input (moveInputAngle) and
+    /// the camera (playerCamera).
+    /// </summary>
+    private void CalculateRelativeRotation ()
+    {
+        Quaternion result = Quaternion.Euler(0f, playerCamera.transform.rotation.eulerAngles.y + moveInputAngle, 0f);
+        playerRelRot =  result;
+    }
+
+    /// <summary>
+    /// Calculates the smooth version of moveValue (moveValueSmooth) with a simple Vector2.Lerp.
+    /// </summary>
+    private void CalculateMoveValueSmooth()
+    {
+        moveValueSmooth = Vector2.Lerp(moveValueSmooth, moveValue, 0.1f * Time.deltaTime);
+    }
     #endregion
 
     #region Input Listeners
-    /// All of those Input Listener Events are called from the PlayerInput component
-    /// attached to the Player Prefab, and they are set up in the inspector as Unity Events.
-
+    /// (Region summary) All of those Input Listener Events are called from the PlayerInput
+    /// component attached to the Player Prefab, and they are set up in the inspector as Unity Events.
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -94,6 +114,7 @@ public class Player : CharacterEngine
     public void OnLook (InputAction.CallbackContext context)
     {
         playerCamera.currentRig.OnLookRelay(context);
+        Debug.LogWarning($"Look value: {context.ReadValue<Vector2>()}");
     }
     public void OnZoom(InputAction.CallbackContext context)
     {

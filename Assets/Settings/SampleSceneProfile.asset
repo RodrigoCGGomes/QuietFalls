@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.06
+    m_Value: 0.31
   scatter:
     m_OverrideState: 1
-    m_Value: 0.89
+    m_Value: 0.75
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -173,15 +173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 400
   gaussianEnd:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 500
   gaussianMaxRadius:
     m_OverrideState: 1

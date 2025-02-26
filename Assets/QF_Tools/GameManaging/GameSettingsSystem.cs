@@ -8,7 +8,7 @@ public class GameSettingsSystem : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 300;
-        QualitySettings.resolutionScalingFixedDPIFactor = 0.6f;
+        QualitySettings.resolutionScalingFixedDPIFactor = 0.2f;
         Debug.Log($"GameSettingSystem {this.gameObject.name}");
     }
 }

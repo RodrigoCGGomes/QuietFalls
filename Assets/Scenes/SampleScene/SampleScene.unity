@@ -1079,13 +1079,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.29340369, y: 0.7255699, z: -0.23726067, w: -0.5754737}
+  m_LocalRotation: {x: 0.4125263, y: 0.74375975, z: -0.452868, w: 0.26749587}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 42.999, y: 252.07599, z: -12.051}
+  m_LocalEulerAnglesHint: {x: 63.425, y: 176.891, z: 56.108}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
+  m_CustomShadowLayers: 1
   m_ShadowLayerMask: 1
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
@@ -4415,11 +4415,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3680965165930267540, guid: 43e9a87ea5ef221459ab636c9cea9a00, type: 3}
       propertyPath: m_Antialiasing
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5909388195487069499, guid: 43e9a87ea5ef221459ab636c9cea9a00, type: 3}
       propertyPath: framerate
-      value: 20
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5909388195487069499, guid: 43e9a87ea5ef221459ab636c9cea9a00, type: 3}
       propertyPath: playerCamera
@@ -5568,7 +5568,7 @@ Transform:
   m_GameObject: {fileID: 1882338898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.79, y: 0.85, z: 18.59}
+  m_LocalPosition: {x: 11.79, y: 0.71, z: 18.59}
   m_LocalScale: {x: 30.488117, y: 30.488117, z: 30.488117}
   m_ConstrainProportionsScale: 0
   m_Children: []

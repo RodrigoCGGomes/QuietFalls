@@ -17,7 +17,7 @@ public class ThirdPersonCamera : CameraRigEngine
     public float orbitZoomSpeed = 4f;               //Zoom Speed.
     public float minPitchAngle = -20f;              //Limit to moving camera down.
     public float maxPitchAngle = 50f;               //Limit to moving camera up.
-    public float sidewaysRatioMultiplier = 0.1f;    //Amount of camera assistance.
+    public float sidewaysRatioMultiplier = 0.25f;    //Amount of camera assistance.
     private Vector3 lerpedTargetPos;                //Target smooth position.
 
     //Tracking runtime values
@@ -43,8 +43,7 @@ public class ThirdPersonCamera : CameraRigEngine
             throw new ArgumentNullException(nameof(parTarget), "ThirdPersonCamera constructor failed: either target or camera is null.");
         }
 
-        
-        ResetLerpedTargetPos();//lerped target position starts at target position
+        ResetLerpedTargetPos();
         playerCamera = parCamera.GetComponent<PlayerCamera>();
     }
     #endregion

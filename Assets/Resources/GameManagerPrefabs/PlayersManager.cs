@@ -6,6 +6,6 @@ public class PlayersManager : MonoBehaviour
 
     public void Test(PlayerInput playerInput)
     {
-        Debug.LogWarning($"{playerInput.gameObject.name}");
+        //Debug.LogWarning($"{playerInput.gameObject.name}");
     }
 }

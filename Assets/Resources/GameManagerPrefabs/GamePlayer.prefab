@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 1202002346702035526}
   - component: {fileID: -7452050511201080166}
   - component: {fileID: 2466951579477817819}
-  - component: {fileID: 9108280631749895962}
   - component: {fileID: 5909388195487069499}
   m_Layer: 0
   m_Name: GamePlayer
@@ -316,29 +315,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &9108280631749895962
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2310364596084535612}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5909388195487069499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,9 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f5e204b2dbbce46849773a315ef88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
   framerate: 20
-  overrideFramerate: 0
   playerCamera: {fileID: 8406580235431720984}
   defaultMoveSpeed: 8
   rotationSmoothingSpeed: 10
@@ -361,6 +335,8 @@ MonoBehaviour:
   moveInputAngle: 0
   playerRelRot: {x: 0, y: 0, z: 0, w: 0}
   playerRelRotSmooth: {x: 0, y: 0, z: 0, w: 0}
+  moveValue: {x: 0, y: 0}
+  moveValueSmooth: {x: 0, y: 0}
 --- !u!1 &4482052338424461316
 GameObject:
   m_ObjectHideFlags: 0

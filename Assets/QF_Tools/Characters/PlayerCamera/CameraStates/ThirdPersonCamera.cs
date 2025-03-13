@@ -5,9 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ThirdPersonCamera : CameraState
 {
-    #region Variables
-    //References
-    public PlayerCamera playerCamera;       //Refence to PlayerCamera component.   
+    #region Variables 
 
     //Constant variables, settings.
     public float cameraHeight = 0.5f;               //Camera height.
@@ -21,7 +19,7 @@ public class ThirdPersonCamera : CameraState
     private float minCameraDist = 3f;
     private float maxCameraDist = 8f;
     public float sidewaysRatioMultiplier = 0.08f;   //Amount of camera assistance.
-    private Vector3 processedTargetPos;                //Target smooth position.
+    private Vector3 processedTargetPos;             //Target smooth position.
 
     //Tracking runtime values
     public float yaw;                           //Current horizontal rotation of the rig.
@@ -36,16 +34,13 @@ public class ThirdPersonCamera : CameraState
     #endregion Variables
 
     #region Constructors
-    public ThirdPersonCamera(Transform parTarget, Camera parCamera) : base(parTarget, parCamera)
+    /// <summary>
+    /// Creating a new instance via code to use as a state in a state machine is absolutelly correct
+    /// </summary>
+    /// <param name="parGamePlayer">  </param>
+    public ThirdPersonCamera(GamePlayer parGamePlayer) : base(parGamePlayer)
     {
-        //Verify parameters
-        if (parTarget == null || parCamera == null)
-        {
-            throw new ArgumentNullException(nameof(parTarget), "ThirdPersonCamera constructor failed: either target or camera is null.");
-        }
-
-        //Assign variables
-        playerCamera = parCamera.GetComponent<PlayerCamera>();
+        //Don't really need to do anything here.
     }
     #endregion
 
@@ -102,8 +97,7 @@ public class ThirdPersonCamera : CameraState
         Quaternion orbitDirection = Quaternion.Euler(pitch, yaw, 0);
         Vector3 offset = orbitDirection * new Vector3(0, 0, -targetOrbitDist);
         Vector3 finalOrbitPosition = processedTargetPos + offset;
-        camera.transform.position = finalOrbitPosition;
-
+        player.playerCamera.transform.position = finalOrbitPosition;
 
         RaycastHit hit;
         Vector3 startPoint = processedTargetPos;
@@ -114,12 +108,10 @@ public class ThirdPersonCamera : CameraState
 
         float distance = Vector3.Distance(startPoint, endPoint);
 
-        
-
         //Detect collision!
         if (Physics.SphereCast(startPoint, sphereRadius, direction, out hit, distance))
         {
-            camera.transform.position = hit.point;
+            player.playerCamera.transform.position = hit.point;
 
             // Draw collision on screen
             Debug.Log($"Hit : {Vector3.Distance(startPoint, hit.point)}");
@@ -135,7 +127,7 @@ public class ThirdPersonCamera : CameraState
         #endregion
 
         MakeCameraLookAtTarget();
-        sidewaysRatio = base.CalculateSidewaysRatio(playerCamera.playerItBelongsTo.moveValue.magnitude, sidewaysRatioMultiplier);
+        sidewaysRatio = base.CalculateSidewaysRatio(player.moveValue.magnitude, sidewaysRatioMultiplier);
     }
 
     #region Input Relays
@@ -171,7 +163,7 @@ public class ThirdPersonCamera : CameraState
     }
     public override void OnZoomRelay(InputAction.CallbackContext context)
     {
-        float mouseStep = 2.5f;
+        float mouseStep = 1f;
 
         string scheme = context.control.device switch
         {
@@ -199,7 +191,6 @@ public class ThirdPersonCamera : CameraState
                 gamepadCameraZoomDirection = 0f;
             }
         }
-
     }
     public override void OnBackRelay(InputAction.CallbackContext context)
     {
@@ -216,7 +207,7 @@ public class ThirdPersonCamera : CameraState
     private void MakeCameraLookAtTarget()
     {
         
-        camera.transform.LookAt(processedTargetPos);
+        player.playerCamera.transform.LookAt(processedTargetPos);
     }
     #endregion
 }

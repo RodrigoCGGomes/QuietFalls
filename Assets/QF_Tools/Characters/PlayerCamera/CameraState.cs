@@ -8,15 +8,19 @@ using UnityEngine.InputSystem;
 public abstract class CameraState
 {
     #region Variables
+    public GamePlayer player;
     public Transform target;        //What should this camera rig follow? (Player)
-    public Camera camera;           //What camera this engine relates to
     #endregion
 
     #region Constructors
-    public CameraState(Transform parTarget, Camera parCamera)
+    /// <summary>
+    /// Teeeeest
+    /// </summary>
+    /// <param name="parGamePlayer"></param>
+    public CameraState(GamePlayer parGamePlayer)
     {
-        target = parTarget;
-        camera = parCamera;
+        player = parGamePlayer;
+        target = parGamePlayer.transform;
     }
     #endregion
 
@@ -35,8 +39,6 @@ public abstract class CameraState
     public abstract void OnLookRelay(InputAction.CallbackContext context);
     public abstract void OnZoomRelay(InputAction.CallbackContext context);
     public abstract void OnBackRelay(InputAction.CallbackContext context);
-
-
     #endregion
 
     #region Tools
@@ -49,8 +51,8 @@ public abstract class CameraState
     public float CalculateSidewaysRatio(float moveMultiplier, float ratioScale)
     {  
         float angleDifference = Mathf.DeltaAngle(                           // Calculate the shortest angle difference (-180 to 180)
-            target.transform.rotation.eulerAngles.y, 
-            camera.transform.rotation.eulerAngles.y);   
+            target.transform.rotation.eulerAngles.y,
+            player.playerCamera.transform.rotation.eulerAngles.y);   
         
         float sidewaysRatio = Mathf.Sin(-angleDifference * Mathf.Deg2Rad);  // Normalize: -1 for RIGHT, 1 for LEFT, 0 when aligned (0° or 180°)
         sidewaysRatio *= moveMultiplier * ratioScale;                       // Process the value, should be zero if character is moving, should be scaled.

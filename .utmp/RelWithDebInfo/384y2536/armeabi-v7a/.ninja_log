@@ -1,0 +1,10 @@
+# ninja log v5
+19	456	7636080615925663	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	a9f1400512db61da
+0	458	7636080615962150	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d55c00189e8d95e8
+15	476	7636080616162513	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6b4aab14487799cc
+22	510	7636080616511301	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	783af3302107e7f1
+27	563	7636080617068781	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	f863458491377199
+4	577	7636080617205754	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7dee44cd19634996
+11	689	7636080618314419	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	239d2fdb239674b0
+8	745	7636080618859045	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2147f8a3278d39c3
+745	820	7636080619657650	C:/Users/rodri/Documents/GitHub/QuietFalls/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/384y2536/obj/armeabi-v7a/libgame.so	5f0445a3e9737d75

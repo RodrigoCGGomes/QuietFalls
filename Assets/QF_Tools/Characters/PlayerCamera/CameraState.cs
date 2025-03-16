@@ -48,14 +48,16 @@ public abstract class CameraState
     /// </summary>
     /// <param name="moveMultiplier">Magnitude of the player's movement, used to scale the effect.</param>
     /// <param name="ratioScale">Multiplier that adjusts the overall influence of the sideways ratio.</param>
-    public float CalculateSidewaysRatio(float moveMultiplier, float ratioScale)
-    {  
+    public float CalculateSidewaysRatio(Quaternion parPlayerRot, float parMoveMultiplier, float parRatioScale)
+    {
+        Debug.Log($"{parPlayerRot}");
+
         float angleDifference = Mathf.DeltaAngle(                           // Calculate the shortest angle difference (-180 to 180)
-            target.transform.rotation.eulerAngles.y,
+            parPlayerRot.eulerAngles.y,  // Use the RAW rotation, not the smoothed one
             player.playerCamera.transform.rotation.eulerAngles.y);   
         
         float sidewaysRatio = Mathf.Sin(-angleDifference * Mathf.Deg2Rad);  // Normalize: -1 for RIGHT, 1 for LEFT, 0 when aligned (0° or 180°)
-        sidewaysRatio *= moveMultiplier * ratioScale;                       // Process the value, should be zero if character is moving, should be scaled.
+        sidewaysRatio *= parMoveMultiplier * parRatioScale;                       // Process the value, should be zero if character is moving, should be scaled.
         return sidewaysRatio;
     }
     #endregion

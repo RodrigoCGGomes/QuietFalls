@@ -1,0 +1,1 @@
+C:\Users\rodri\Documents\GitHub\QuietFalls\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\384y2536\obj\arm64-v8a

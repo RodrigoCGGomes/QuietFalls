@@ -13,13 +13,15 @@ public class Walking : PlayerState
     #region Variables
     //Constant Values
     private float defaultMoveSpeed = 6f;        // Main character speed multiplier.
-    public float rotationSmoothingSpeed = 10f;
+    public float rotationSmoothingSpeed = 30f;
 
     //Runtime Values
     public float moveInputAngle;                // WASD/Left Stick 0-360 value   /   Processed in Update.
-    public Quaternion playerRelRot;             // Stores the player Camera in relation to it's Camera.
-    public Quaternion playerRelRotSmooth;       // Smooth value for PlayerRelRot variable.
 
+    public Quaternion playerRelRot;             // Stores the player Camera in relation to it's Camera. //REMEMBER TO MOVE THIS TO THE PLAYER SATTE/PLAYER CLASS SO IT CAN BE ACCESSED BY ALL
+                                                // OF THE PLAYER STATES, BECAUSE I'M THINKING IT WILL BREAK.
+
+    public Quaternion playerRelRotSmooth;       // Smooth value for PlayerRelRot variable.
     #endregion
 
     #region Constructors
@@ -50,8 +52,14 @@ public class Walking : PlayerState
         LerpMoveValue();
         ProcessPlayerRotation();
 
+
+        // Old version using the smooth character rotation... I'm commenting it out for now. I want to use the actual rotation instead.
         player.Move(playerRelRot.normalized * Vector3.forward, defaultMoveSpeed * base.player.moveValue.magnitude);
-        //Debug.Log($"moveValue magnitude is : {moveValue.magnitude}, and Vector2 value is : {moveValue}");
+
+        //New? I don't think so
+        //Vector3 rawMoveDirection = player.playerCamera.transform.rotation * new Vector3(player.moveInputVector.x, 0, player.moveInputVector.y);
+        //player.Move(rawMoveDirection.normalized, defaultMoveSpeed * base.player.moveValue.magnitude);
+
     }
     #endregion
 

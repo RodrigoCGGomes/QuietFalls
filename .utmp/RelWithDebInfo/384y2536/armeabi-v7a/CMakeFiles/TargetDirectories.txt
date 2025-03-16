@@ -1,0 +1,5 @@
+C:/Users/rodri/Documents/GitHub/QuietFalls/.utmp/RelWithDebInfo/384y2536/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/rodri/Documents/GitHub/QuietFalls/.utmp/RelWithDebInfo/384y2536/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/Users/rodri/Documents/GitHub/QuietFalls/.utmp/RelWithDebInfo/384y2536/armeabi-v7a/GameActivity/CMakeFiles/game.dir
+C:/Users/rodri/Documents/GitHub/QuietFalls/.utmp/RelWithDebInfo/384y2536/armeabi-v7a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/rodri/Documents/GitHub/QuietFalls/.utmp/RelWithDebInfo/384y2536/armeabi-v7a/GameActivity/CMakeFiles/rebuild_cache.dir

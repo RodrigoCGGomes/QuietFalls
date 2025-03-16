@@ -11,7 +11,7 @@ public class GamePlayer : CharacterEngine
     private PlayerStateMachine stateMachine;    //State Machine instance that will manage the PlayerState
 
     //Player States
-    private Walking walkingState;
+    public Walking walkingState;
 
     //References
     public PlayerCamera playerCamera;           // Reference to the this player`s PlayerCamera component.
@@ -19,6 +19,7 @@ public class GamePlayer : CharacterEngine
     //Shared variables between PlayerStates
     public Vector2 moveValue, moveValueSmooth;  //REMEMBER TO CHECK SMOOTHED VERSION AS IT APPEARS TO NEVER BE USED
     public Vector2 moveInputVector;             // WASD/Left Stick Vector2       /   Set by Input Listener.
+
 
     #endregion
 
@@ -38,6 +39,7 @@ public class GamePlayer : CharacterEngine
     private void Update()
     {
         stateMachine.currentState.Tick();
+        playerCamera.stateMachine.currentState.Tick();
     }
     #endregion
 

@@ -7,17 +7,18 @@ public class ThirdPersonCamera : CameraState
 {
     #region Variables 
 
+
     //Constant variables, settings.
     public float cameraHeight = 0.5f;               //Camera height.
     public float rotationSpeed = 240f;              //How fast should the camera orbit?
     public float smoothing = 20f;                   //Amount of rotation smoothing effect.
-    public float targetSmoothing = 15f;             //Amount of target smoothing effect.
+    public float targetSmoothing = 5f;              //Amount of target smoothing effect.
     public float targetOrbitDist = 5f;              //Camera distance from character.
     public float orbitZoomSpeed = 8f;               //Zoom Speed.
     public float minPitchAngle = -70f;              //Limit to moving camera down.
     public float maxPitchAngle = 60f;               //Limit to moving camera up.
     private float minCameraDist = 3f;
-    private float maxCameraDist = 8f;
+    private float maxCameraDist = 6f;
     public float sidewaysRatioMultiplier = 0.08f;   //Amount of camera assistance.
     private Vector3 processedTargetPos;             //Target smooth position.
 
@@ -92,7 +93,6 @@ public class ThirdPersonCamera : CameraState
         pitch = Mathf.Clamp(pitch, minPitchAngle, maxPitchAngle);
         #endregion
 
-        #region Camera Orbit
         // Compute camera position in orbit.
         Quaternion orbitDirection = Quaternion.Euler(pitch, yaw, 0);
         Vector3 offset = orbitDirection * new Vector3(0, 0, -targetOrbitDist);
@@ -102,32 +102,35 @@ public class ThirdPersonCamera : CameraState
         RaycastHit hit;
         Vector3 startPoint = processedTargetPos;
         Vector3 endPoint = finalOrbitPosition;
-        float sphereRadius = 0.5f;
-
-        Vector3 direction = (endPoint - startPoint).normalized;
-
-        float distance = Vector3.Distance(startPoint, endPoint);
+        
+        float sphereRadius = 0.5f;                                  // Determine how big the sphere of the cast will be.
+        Vector3 direction = (endPoint - startPoint).normalized;     // Direction of the cast.
+        float distance = Vector3.Distance(startPoint, endPoint);    // How far do we want to cast the sphere? (Distance between target and camera).
 
         //Detect collision!
         if (Physics.SphereCast(startPoint, sphereRadius, direction, out hit, distance))
         {
-            player.playerCamera.transform.position = hit.point;
+            // If we simply use hit.normal, it will be the contact point, not the center of the sphere.
+            // So we need to move the hit.point back to the sphere surface using the direction of the hit with the lenght of the sphere radius.
+            player.playerCamera.transform.position = hit.point + (hit.normal * sphereRadius);
 
-            // Draw collision on screen
+            // Draw collision on scene view if collides (Debug).
             Debug.Log($"Hit : {Vector3.Distance(startPoint, hit.point)}");
-            Debug.DrawRay(startPoint, direction * distance, Color.blue); // Main cast direction
-            Debug.DrawLine(startPoint, hit.point, Color.red); // Show the actual collision
+            Debug.DrawRay(startPoint, direction * distance, Color.blue);    // Main cast direction
+            Debug.DrawLine(startPoint, hit.point, Color.red);               // Show the actual collision
         }
         else
         {
-            // Draw collision on screen
+            // Draw collision on scene view if does not collide (Debug).
             Debug.DrawRay(startPoint, direction * distance, Color.green);
         }
 
-        #endregion
+        // Make the camera look at the target.
+        player.playerCamera.transform.LookAt(processedTargetPos);
 
-        MakeCameraLookAtTarget();
-        sidewaysRatio = base.CalculateSidewaysRatio(player.moveValue.magnitude, sidewaysRatioMultiplier);
+        // We calculate the sideways ratio only after the player has updated it's rotation.
+        Quaternion playerRawRotation = player.walkingState.playerRelRot;    // Get the player's raw rotation.
+        sidewaysRatio = base.CalculateSidewaysRatio(playerRawRotation, player.moveValue.magnitude, sidewaysRatioMultiplier);
     }
 
     #region Input Relays
@@ -197,17 +200,5 @@ public class ThirdPersonCamera : CameraState
         throw new System.NotImplementedException();
     }
     #endregion
-
-    #endregion
-
-    #region Private Instructions
-    /// <summary>
-    /// Ensure camera is looking at the smoothed target position.
-    /// </summary>
-    private void MakeCameraLookAtTarget()
-    {
-        
-        player.playerCamera.transform.LookAt(processedTargetPos);
-    }
     #endregion
 }

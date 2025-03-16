@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        stateMachine.currentState.Tick();
+        
     }
     #endregion
 

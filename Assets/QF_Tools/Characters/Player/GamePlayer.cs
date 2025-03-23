@@ -19,13 +19,13 @@ public class GamePlayer : CharacterEngine
     //Shared variables between PlayerStates
     public Vector2 moveValue, moveValueSmooth;  //REMEMBER TO CHECK SMOOTHED VERSION AS IT APPEARS TO NEVER BE USED
     public Vector2 moveInputVector;             // WASD/Left Stick Vector2       /   Set by Input Listener.
-
-
     #endregion
 
     #region MonoBehaviour Calls
     private void OnEnable()
     {
+        //Time.timeScale = 0.1f;
+
         //Create the state machine
         stateMachine = new PlayerStateMachine(this);
 
@@ -34,8 +34,11 @@ public class GamePlayer : CharacterEngine
 
         //Initialize first PlayerState.
         stateMachine.Initialize(walkingState);
+
+        //Initialize PlayerCamera
+        playerCamera.Initialize(this);
     }
-    
+
     private void Update()
     {
         stateMachine.currentState.Tick();

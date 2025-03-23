@@ -3,12 +3,14 @@ using UnityEngine;
 public class PlayerStateMachine
 {
     public PlayerState currentState { get; private set; }
-    public GamePlayer player;
+    private GamePlayer player;
 
+    /// <summary>
+    /// Constructor takes the player instance as a parameter so that the state machine knows which player it is managing.
+    /// </summary>
     public PlayerStateMachine(GamePlayer parPlayer)
     {
         player = parPlayer;
-        Debug.LogWarning($"Printing out the parPlayer argument that was passed to playerStateMachine: {parPlayer.name} ");
     }
 
     public void Initialize(PlayerState startingState)

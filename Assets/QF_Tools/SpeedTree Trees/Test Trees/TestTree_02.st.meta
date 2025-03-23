@@ -1,7 +1,17 @@
 fileFormatVersion: 2
 guid: 56678d4f0ba38d942ab67909008f27f6
 SpeedTreeImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default
+    second: {fileID: 2100000, guid: 54b6651203b30c441abb349c44060082, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TestTree_02
+    second: {fileID: 2100000, guid: 6210e3ec8969932448f91518d374e04d, type: 2}
   serializedVersion: 7
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
@@ -18,7 +28,7 @@ SpeedTreeImporter:
   hasBillboard: 0
   lODSettings:
   - enableSettingOverride: 0
-    height: 0.5
+    height: 0.5615
     castShadows: 1
     receiveShadows: 1
     useLightProbes: 1
@@ -28,7 +38,7 @@ SpeedTreeImporter:
     enableSubsurface: 1
     windQuality: 4
   - enableSettingOverride: 0
-    height: 0.25
+    height: 0.15455918
     castShadows: 1
     receiveShadows: 1
     useLightProbes: 1

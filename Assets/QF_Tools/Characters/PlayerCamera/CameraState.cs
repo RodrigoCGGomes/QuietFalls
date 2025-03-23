@@ -46,18 +46,19 @@ public abstract class CameraState
     /// Returns a ratio (-1 to 1) indicating how much the player is facing sideways relative to the camera.
     /// 0 = Facing forward/backward, -1 = Fully left, 1 = Fully right.
     /// </summary>
-    /// <param name="moveMultiplier">Magnitude of the player's movement, used to scale the effect.</param>
-    /// <param name="ratioScale">Multiplier that adjusts the overall influence of the sideways ratio.</param>
-    public float CalculateSidewaysRatio(Quaternion parPlayerRot, float parMoveMultiplier, float parRatioScale)
+    /// <param name="parMoveMultiplier">Magnitude of the player's movement, used to scale the effect.</param>
+    /// <param name="parRatioScale">Multiplier that adjusts the overall influence of the sideways ratio.</param>
+    /// <param name="parPlayerRelativeRotation">Player's rotation relative to the camera.</param>
+    public float CalculateSidewaysRatio(Quaternion parPlayerRelativeRotation, float parMoveMultiplier, float parRatioScale)
     {
-        Debug.Log($"{parPlayerRot}");
+        //Debug.Log($"{parPlayerRot}");
 
         float angleDifference = Mathf.DeltaAngle(                           // Calculate the shortest angle difference (-180 to 180)
-            parPlayerRot.eulerAngles.y,  // Use the RAW rotation, not the smoothed one
+            parPlayerRelativeRotation.eulerAngles.y,                        // Use the RAW rotation, not the smoothed one
             player.playerCamera.transform.rotation.eulerAngles.y);   
         
         float sidewaysRatio = Mathf.Sin(-angleDifference * Mathf.Deg2Rad);  // Normalize: -1 for RIGHT, 1 for LEFT, 0 when aligned (0° or 180°)
-        sidewaysRatio *= parMoveMultiplier * parRatioScale;                       // Process the value, should be zero if character is moving, should be scaled.
+        sidewaysRatio *= parMoveMultiplier * parRatioScale;                 // Process the value, should be zero if character is moving, should be scaled.
         return sidewaysRatio;
     }
     #endregion

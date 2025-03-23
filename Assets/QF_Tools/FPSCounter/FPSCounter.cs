@@ -7,7 +7,11 @@ public class FPSCounter : MonoBehaviour
     public int current, slowCurrent;
     void Start()
     {
-        
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            QualitySettings.resolutionScalingFixedDPIFactor = 0.7f;
+        }
+        Application.targetFrameRate = 300;
     }
 
     // Update is called once per frame

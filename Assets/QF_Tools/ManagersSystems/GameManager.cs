@@ -1,5 +1,4 @@
 using QuietFallsGameManaging;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,56 +7,57 @@ namespace QuietFallsGameManaging
     public class GameManager : MonoBehaviour
     {
         #region Variables
-        public static GameManager instance;
+        /// <summary>
+        /// Singleton instance of the GameManager.
+        /// </summary>
+        private static GameManager instance;
 
-        private GameInputManager inputManager;
+        // Sub Game Managers
         private GameStateManager stateManager;
         private GamePlayerManager playerManager;
-
-
-        private GameDebugger gameDebugger;
-
         public PlayerInputManager playerInputManager;
-
         #endregion
 
         #region Entry Points
-
+        /// <summary>
+        /// This method is the very first thing that happens when the game starts.
+        /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void OnGameStart() // Called once when Unity starts the game.
         {
+            //Standard singleton check.
             if (instance != null)
             {
                 Debug.LogError("Somehow more than one GameInputManager instance exists.");
                 return;
             }
 
-            
+            SpawnGameManagers();    
+            SetUpGameManagers();    
+            OnEverySceneLoad();     
+        }
 
-            SpawnGameManagers();
-            Debug.Log("GameManager's OnGameStart() procedure success.");
-            SetUpGameManagers();
-            OnEverySceneLoad();
-
-            
-        } 
-
-        private static void OnEverySceneLoad() // Called every time a new scene loads.
+        /// <summary>
+        /// This method is called every time a new scene is loaded. Could be useful for adding logic that is common to all scene loads.
+        /// It is manually called once by OnGameStart() and then munually called by SceneManager (NotImplemented Yet).
+        /// </summary>
+        private static void OnEverySceneLoad()
         {
-            //GameManager calls this first time, then GameSceneManager takes over.
-        } 
-
+            // Will only work after Implementing a SceneManager and having it call this method.
+        }
         #endregion
 
         #region Instructions
-
-        private static void SpawnGameManagers() // Instantiate the GameManager (container) Gameobject.
+        /// <summary>
+        /// This method is only called once at the beginning of the game by GameManager.cs and it spawns the GameManagers.
+        /// The Game Managers are scene persistent and are static references to the game's main systems.
+        /// </summary>
+        private static void SpawnGameManagers()
         {
             #region Instantiate Gameobjects
             GameObject globalContainerGO = new GameObject("GAME MANAGERS");
 
             GameObject gameManagerGO = new GameObject("Game Manager");
-            //GameObject gameInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/GameInputManager"));
             GameObject gameStateManagerGO = new GameObject("Game State Manager");
             GameObject gamePlayerManagerGO = new GameObject("Game Player Manager");
             GameObject gameDebuggerManagerGO = new GameObject("Game Debugger");
@@ -66,34 +66,28 @@ namespace QuietFallsGameManaging
             instance = gameManagerGO.AddComponent<GameManager>();
             gameManagerGO.transform.parent = globalContainerGO.transform;
 
-            //instance.inputManager = gameInputManagerGO.GetComponent<GameInputManager>();
-            //gameInputManagerGO.transform.parent = gameManagerGO.transform;
-
             instance.stateManager = gameStateManagerGO.AddComponent<GameStateManager>();
             gameStateManagerGO.transform.parent = gameManagerGO.transform;
 
             instance.playerManager = gamePlayerManagerGO.AddComponent<GamePlayerManager>();
             gamePlayerManagerGO.transform.parent = gameManagerGO.transform;
 
-            instance.gameDebugger = gameDebuggerManagerGO.AddComponent<GameDebugger>();
-            gameDebuggerManagerGO.transform.parent = gameManagerGO.transform;
-
             instance.playerInputManager = playerInputManagerGO.GetComponent<PlayerInputManager>();
             playerInputManagerGO.transform.parent = globalContainerGO.transform;
-
-
-
             #endregion
             
             DontDestroyOnLoad(globalContainerGO);
-        } 
+        }
 
+        /// <summary>
+        /// The reason this exists is because it's not desired to have their Initial configuration be handled by
+        /// their MonoBehaviour Start() methods. This way, the GameManager can control the order of initialization.
+        /// </summary>
         private static void SetUpGameManagers() // Calls their initialization instructions
         {
             //GameManager.instance.inputManager.Initialize();
             GameManager.instance.stateManager.Initialize();
             GameManager.instance.playerManager.Initialize();
-            GameManager.instance.gameDebugger.Initialize();
         } 
         #endregion
     }

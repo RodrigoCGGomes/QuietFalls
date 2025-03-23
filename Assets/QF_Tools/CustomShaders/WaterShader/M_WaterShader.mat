@@ -47,8 +47,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Deep_Water: -2.6
-    - _Deep_Water_Opacity: 0.045
-    - _Depth: 2.45
+    - _Deep_Water_Opacity: 0.364
+    - _Depth: 0.45
     - _Foam_Amount: 24.67
     - _Foam_Cutoff: 34.1
     - _Foam_Fade: 0
@@ -67,11 +67,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Reflection_Glossiness: 1
-    - _Refraction_Strength: 0.13
-    - _ShallowWaterOpacity: 0.76
+    - _Refraction_Strength: 0.16
+    - _ShallowWaterOpacity: 1
     - _Shallow_Water_Opacity: 0
     m_Colors:
-    - _Deep_Water_Color: {r: 0.49661568, g: 0.8980392, b: 0.84208316, a: 0}
+    - _Deep_Water_Color: {r: 0, g: 1, b: 0.86274505, a: 0}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shallow_Water_Color: {r: 0.1760413, g: 0.64398175, b: 0.8679245, a: 0}
   m_BuildTextureStacks: []

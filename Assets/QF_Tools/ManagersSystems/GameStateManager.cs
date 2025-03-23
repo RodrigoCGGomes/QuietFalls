@@ -8,34 +8,24 @@ public class GameStateManager : MonoBehaviour
 
     public void Initialize()
     {
-        EnsureSingleton();
+        //Standard singleton check.
+        if (instance != null)
+        {
+            Debug.LogError("Somehow more than one GameInputManager instance exists.");
+            return;
+        }
     }
 
     #region Public Static Methods
-
-    public static GameStateManager GetCurrentState()
+    public static GameState GetCurrentState()
     {
-        return GameStateManager.instance;
+        return GameStateManager.instance.state;
     }
 
     #endregion
 
     #region Private Instructions
-
-    private void EnsureSingleton()
-    {
-        if (instance != null && instance != this)
-        {
-            Debug.LogError("Somehow more than one GameStateManager instance exists. Being deleted.");
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
+    // Not Implemented Yet
     #endregion
 
 }

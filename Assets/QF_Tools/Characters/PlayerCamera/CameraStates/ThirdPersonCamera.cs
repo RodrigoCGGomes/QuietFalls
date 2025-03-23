@@ -3,42 +3,104 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Third Person Camera View. All logic and behaviour for the third person camera is here. 
+/// Player prefab has a GamePlayer component, GamePlayer component has an instance of CameraStateMachine.cs,
+/// and CameraStateMachine.cs creates an instance of this class and calls statemachine.Initialize/ChangeState() in the OnEnable method.
+/// </summary>
 public class ThirdPersonCamera : CameraState
 {
+    /// <summary> Struct that holds all the settings for the camera. </summary>
+    [Serializable] public struct Settings
+    {
+        /// <summary> Distance from the ground. If set to zero, the camera will be at the player's feet. </summary>
+        public float cameraHeight;
+
+        /// <summary> View sensitivity. How fast should the camera orbit? </summary>
+        public float rotationSpeed;
+
+        /// <summary> Amount of rotation smoothing effect applied to the camera orbit. </summary>
+        public float smoothing;
+
+        /// <summary> Amount of smoothing effect applied to the target position. </summary>
+        public float targetSmoothing;
+
+        /// <summary> Speed of zooming in and out while using gamepad. </summary>
+        public float orbitZoomSpeed;
+
+        /// <summary> Limit to moving camera down. </summary>
+        public float minPitchAngle;
+
+        /// <summary> Limit to moving camera up. </summary>
+        public float maxPitchAngle;
+
+        /// <summary> Minimum distance the camera can be from the player. </summary>
+        public float minCameraDist;
+
+        /// <summary> Maximum distance the camera can be from the player. </summary>
+        public float maxCameraDist;
+
+        /// <summary> Amount of camera assistance. Sideways ratio is how much the camera should tend to rotate to the side when the player is moving. </summary>
+        public float sidewaysRatioMultiplier;
+
+        public static Settings Default => new Settings
+        {
+            cameraHeight = 0.5f,
+            rotationSpeed = 240f,
+            smoothing = 20f,
+            targetSmoothing = 10f,
+            orbitZoomSpeed = 8f,
+            minPitchAngle = -70f,
+            maxPitchAngle = 60f,
+            minCameraDist = 5f,
+            maxCameraDist = 8f,
+            sidewaysRatioMultiplier = 0.08f
+        };
+    
+    }
+
+    /// <summary> Struct that holds the variables that are constantly updated during runtime. </summary>
+    [Serializable] public struct CameraVariables
+    {
+        public float yaw;
+        public float pitch;
+        public float gamepadCameraZoomDirection;
+        public float sidewaysRatio;
+        public float targetOrbitDist;
+        public Vector3 processedTargetPos;
+        public Vector2 lookVector, lookVectorSmooth;
+
+        public static CameraVariables Default => new CameraVariables
+        {
+            targetOrbitDist = 5f
+        };
+    }
+
+    /// <summary> Struct that holds variables related to input and input processing. </summary>
+    [Serializable] public struct InputVariables
+    {
+        /// <summary> Track if the stick is actively moving </summary>
+        public bool isStickActive;
+
+        /// <summary> Indicates whether the look input is coming from a mouse or a gamepad. </summary>
+        public string currentLookScheme;
+
+        /// <summary> Tracks look values. </summary>
+        public Vector2 lookVector;
+
+        /// <summary> Processed version of lookVector. </summary>
+        public Vector2 lookVectorSmooth;
+
+    }
+
     #region Variables 
-
-
-    //Constant variables, settings.
-    public float cameraHeight = 0.5f;               //Camera height.
-    public float rotationSpeed = 240f;              //How fast should the camera orbit?
-    public float smoothing = 20f;                   //Amount of rotation smoothing effect.
-    public float targetSmoothing = 5f;              //Amount of target smoothing effect.
-    public float targetOrbitDist = 5f;              //Camera distance from character.
-    public float orbitZoomSpeed = 8f;               //Zoom Speed.
-    public float minPitchAngle = -70f;              //Limit to moving camera down.
-    public float maxPitchAngle = 60f;               //Limit to moving camera up.
-    private float minCameraDist = 3f;
-    private float maxCameraDist = 6f;
-    public float sidewaysRatioMultiplier = 0.08f;   //Amount of camera assistance.
-    private Vector3 processedTargetPos;             //Target smooth position.
-
-    //Tracking runtime values
-    public float yaw;                           //Current horizontal rotation of the rig.
-    public float pitch;                         //Current vertical rotation of the rig.
-    public float gamepadCameraZoomDirection;    //Input direction for controlling camera distance. 
-    private float sidewaysRatio;      
-
-    //Input-Related Variables
-    public bool isStickActive = false;              // Track if the stick is actively moving
-    private string currentLookScheme;               // Is Look input being done with mouse or gamepad?
-    private Vector2 lookVector, lookVectorSmooth;   // Tracks look values.
+    private Settings settings = Settings.Default;
+    private CameraVariables current = CameraVariables.Default;
+    private InputVariables input = new InputVariables();
     #endregion Variables
 
     #region Constructors
-    /// <summary>
-    /// Creating a new instance via code to use as a state in a state machine is absolutelly correct
-    /// </summary>
-    /// <param name="parGamePlayer">  </param>
+    /// <summary> Creating a new instance via code to use as a state in a state machine is absolutelly correct </summary>
     public ThirdPersonCamera(GamePlayer parGamePlayer) : base(parGamePlayer)
     {
         //Don't really need to do anything here.
@@ -50,7 +112,7 @@ public class ThirdPersonCamera : CameraState
     public override void EnterState()
     {
         //Reset lerpedTargetPos so it starts at target position.
-        processedTargetPos = target.position;
+        current.processedTargetPos = target.position;
     }
 
     public override void ExitState()
@@ -61,19 +123,19 @@ public class ThirdPersonCamera : CameraState
     public override void Tick()
     {
         // Figure out the ACTUAL target position (Smoothing and raising it)
-        processedTargetPos = Vector3.Lerp(processedTargetPos, target.position + (Vector3.up * cameraHeight), targetSmoothing * Time.deltaTime);
+        current.processedTargetPos = Vector3.Lerp(current.processedTargetPos, target.position + (Vector3.up * settings.cameraHeight), settings.targetSmoothing * Time.deltaTime);
 
         //Apply the gamepad zoom
-        targetOrbitDist += gamepadCameraZoomDirection * Time.deltaTime * orbitZoomSpeed * -1f;
-        targetOrbitDist = Mathf.Clamp(targetOrbitDist, minCameraDist, maxCameraDist);
+        current.targetOrbitDist += current.gamepadCameraZoomDirection * Time.deltaTime * settings.orbitZoomSpeed * -1f;
+        current.targetOrbitDist = Mathf.Clamp(current.targetOrbitDist, settings.minCameraDist, settings.maxCameraDist);
 
         //Process lookVector so it feels smooth
-        lookVectorSmooth = Vector2.Lerp(lookVectorSmooth, lookVector, smoothing * Time.deltaTime);
+        input.lookVectorSmooth = Vector2.Lerp(input.lookVectorSmooth, input.lookVector, settings.smoothing * Time.deltaTime);
 
         #region Apply Yaw and Pitch
         //All of this is because mouse delta does not require Time.deltaTime fix but gamepad does...
         float mouseMultiplier, stickMultiplier; 
-        switch (currentLookScheme)
+        switch (input.currentLookScheme)
         {
             case "Mouse":
                 mouseMultiplier = 1f;
@@ -88,49 +150,70 @@ public class ThirdPersonCamera : CameraState
                 stickMultiplier = 1f;
                 break;
         }
-        yaw += ((lookVectorSmooth.x * stickMultiplier) + sidewaysRatio) * rotationSpeed * Time.deltaTime + (lookVectorSmooth.x * mouseMultiplier);
-        pitch -= (lookVectorSmooth.y * stickMultiplier * rotationSpeed * Time.deltaTime) + (lookVectorSmooth.y * mouseMultiplier);
-        pitch = Mathf.Clamp(pitch, minPitchAngle, maxPitchAngle);
+        current.yaw += ((input.lookVectorSmooth.x * stickMultiplier) + current.sidewaysRatio) * settings.rotationSpeed * Time.deltaTime + (input.lookVectorSmooth.x * mouseMultiplier);
+        current.pitch -= (input.lookVectorSmooth.y * stickMultiplier * settings.rotationSpeed * Time.deltaTime) + (input.lookVectorSmooth.y * mouseMultiplier);
+        current.pitch = Mathf.Clamp(current.pitch, settings.minPitchAngle, settings.maxPitchAngle);
+
+        // Slowly straighten up the pitch while walking.
+        if (Mathf.Approximately(input.lookVector.y, 0f))
+        {
+            float moveMagnitude = player.moveValue.magnitude;
+            current.pitch = Mathf.Lerp(current.pitch, 0f, Time.deltaTime * moveMagnitude * 0.4f);
+        }
         #endregion
 
         // Compute camera position in orbit.
-        Quaternion orbitDirection = Quaternion.Euler(pitch, yaw, 0);
-        Vector3 offset = orbitDirection * new Vector3(0, 0, -targetOrbitDist);
-        Vector3 finalOrbitPosition = processedTargetPos + offset;
-        player.playerCamera.transform.position = finalOrbitPosition;
+        Quaternion orbitDirection = Quaternion.Euler(current.pitch, current.yaw, 0);
+        Vector3 desiredOffset = orbitDirection * new Vector3(0, 0, current.targetOrbitDist * -1f);
+        Vector3 desiredCameraPosition = current.processedTargetPos + desiredOffset;
+        player.playerCamera.transform.position = desiredCameraPosition;
 
         RaycastHit hit;
-        Vector3 startPoint = processedTargetPos;
-        Vector3 endPoint = finalOrbitPosition;
+        Vector3 startPoint = current.processedTargetPos;
+        Vector3 endPoint = desiredCameraPosition;
         
-        float sphereRadius = 0.5f;                                  // Determine how big the sphere of the cast will be.
+        float sphereRadius = 0.5f;
+
+        // Check if the would-be unobstructed camera position is obstructed.
+        bool isObstructed = Physics.CheckSphere(desiredCameraPosition, sphereRadius);
+        if (!isObstructed)
+        {
+            // No obstruction detected
+            player.playerCamera.transform.position = desiredCameraPosition;
+        }
+        //Debug.LogWarning($"{isObstructed}");
+
+        // Determine how big the sphere of the cast will be.
         Vector3 direction = (endPoint - startPoint).normalized;     // Direction of the cast.
         float distance = Vector3.Distance(startPoint, endPoint);    // How far do we want to cast the sphere? (Distance between target and camera).
 
         //Detect collision!
         if (Physics.SphereCast(startPoint, sphereRadius, direction, out hit, distance))
         {
-            // If we simply use hit.normal, it will be the contact point, not the center of the sphere.
-            // So we need to move the hit.point back to the sphere surface using the direction of the hit with the lenght of the sphere radius.
-            player.playerCamera.transform.position = hit.point + (hit.normal * sphereRadius);
+            // I am also checking if (isObstructed == true) because if the would-be unobstructed camera position is not inside a collider,
+            // then we don't want to move the camera.
+            if(isObstructed /*|| hit.collider.gameObject.tag != "terrain"*/)
+            {
+                // If we simply use hit.normal, it will be the contact point, not the center of the sphere.
+                // So we need to move the hit.point back to the sphere surface using the direction of the hit with the lenght of the sphere radius.
+                player.playerCamera.transform.position = hit.point + (hit.normal * sphereRadius);
+            }
 
-            // Draw collision on scene view if collides (Debug).
-            Debug.Log($"Hit : {Vector3.Distance(startPoint, hit.point)}");
-            Debug.DrawRay(startPoint, direction * distance, Color.blue);    // Main cast direction
-            Debug.DrawLine(startPoint, hit.point, Color.red);               // Show the actual collision
+            Debug.DrawRay(startPoint, direction * distance, Color.blue);    // Debug main cast direction
+            Debug.DrawLine(startPoint, hit.point, Color.red);               // Debug the actual collision
         }
         else
         {
-            // Draw collision on scene view if does not collide (Debug).
-            Debug.DrawRay(startPoint, direction * distance, Color.green);
+            Debug.DrawRay(startPoint, direction * distance, Color.green);   // Debug main cast direction
         }
 
-        // Make the camera look at the target.
-        player.playerCamera.transform.LookAt(processedTargetPos);
+        player.playerCamera.transform.LookAt(current.processedTargetPos);   // Camera should be always be looking at lerped target.
 
-        // We calculate the sideways ratio only after the player has updated it's rotation.
-        Quaternion playerRawRotation = player.walkingState.playerRelRot;    // Get the player's raw rotation.
-        sidewaysRatio = base.CalculateSidewaysRatio(playerRawRotation, player.moveValue.magnitude, sidewaysRatioMultiplier);
+        current.sidewaysRatio = base.CalculateSidewaysRatio(
+            player.walkingState.playerRelRot, 
+            player.moveValue.magnitude, 
+            settings.sidewaysRatioMultiplier
+            );    
     }
 
     #region Input Relays
@@ -145,11 +228,11 @@ public class ThirdPersonCamera : CameraState
 
         if (context.performed)
         {
-            lookVector = newInput;
-            isStickActive = true; // Track movement
+            input.lookVector = newInput;
+            input.isStickActive = true; // Track movement
 
             // Determine input source
-            currentLookScheme = context.control.device switch
+            input.currentLookScheme = context.control.device switch
             {
                 Mouse => "Mouse",
                 Gamepad => "Gamepad",
@@ -160,8 +243,8 @@ public class ThirdPersonCamera : CameraState
         }
         else if (context.canceled)
         {
-            lookVector = Vector2.zero;
-            isStickActive = false;
+            input.lookVector = Vector2.zero;
+            input.isStickActive = false;
         }
     }
     public override void OnZoomRelay(InputAction.CallbackContext context)
@@ -180,18 +263,18 @@ public class ThirdPersonCamera : CameraState
         {
             if (context.phase == InputActionPhase.Started)
             {
-                targetOrbitDist = Mathf.Clamp(targetOrbitDist + mouseStep * context.ReadValue<float>() * -1f, minCameraDist, maxCameraDist);
+                current.targetOrbitDist = Mathf.Clamp(current.targetOrbitDist + mouseStep * context.ReadValue<float>() * -1f, settings.minCameraDist, settings.maxCameraDist);
             }
         }
         else
         {
             if (context.phase != InputActionPhase.Canceled)
             {
-                gamepadCameraZoomDirection = context.ReadValue<float>();
+                current.gamepadCameraZoomDirection = context.ReadValue<float>();
             }
             else
-            { 
-                gamepadCameraZoomDirection = 0f;
+            {
+                current.gamepadCameraZoomDirection = 0f;
             }
         }
     }

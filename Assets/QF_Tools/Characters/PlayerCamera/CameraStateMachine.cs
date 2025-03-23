@@ -28,6 +28,7 @@ public class CameraStateMachine
 
     public void ChangeState(CameraState newState)
     {
+        currentState.ExitState();
         currentState = newState;
         currentState.EnterState();
     }

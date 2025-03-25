@@ -20,3 +20,4 @@ public class PlayerCamera : MonoBehaviour
         stateMachine.Initialize(thirdPersonState);              // Initialize first CameraState.
     }
 }
+

@@ -48,7 +48,7 @@ Material:
     m_Floats:
     - _Deep_Water: -2.6
     - _Deep_Water_Opacity: 0.364
-    - _Depth: 0.45
+    - _Depth: 0.66
     - _Foam_Amount: 24.67
     - _Foam_Cutoff: 34.1
     - _Foam_Fade: 0
@@ -60,14 +60,14 @@ Material:
     - _Glossiness: 0.88
     - _Normal_Map_Speed: 1
     - _Normal_Rotation_02: 10
-    - _Normal_Stregth: 0.21
+    - _Normal_Stregth: 0.09
     - _Normal_Tiling: 41.5
     - _Normal_Tiling_01: 7.4
     - _Normal_Tiling_02: 11.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Reflection_Glossiness: 1
-    - _Refraction_Strength: 0.16
+    - _Refraction_Strength: 0.066
     - _ShallowWaterOpacity: 1
     - _Shallow_Water_Opacity: 0
     m_Colors:

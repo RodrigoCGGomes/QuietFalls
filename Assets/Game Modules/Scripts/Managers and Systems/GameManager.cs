@@ -1,8 +1,9 @@
-using QuietFallsGameManaging;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace QuietFallsGameManaging
+using GameModules.Systems;
+
+namespace GameModules.GameManagers
 {
     public class GameManager : MonoBehaviour
     {
@@ -16,6 +17,7 @@ namespace QuietFallsGameManaging
         private GameStateManager stateManager;
         private GamePlayerManager playerManager;
         public PlayerInputManager playerInputManager;
+        private GamePreferencesSystem preferencesSystem;
         #endregion
 
         #region Entry Points
@@ -55,25 +57,35 @@ namespace QuietFallsGameManaging
         private static void SpawnGameManagers()
         {
             #region Instantiate Gameobjects
-            GameObject globalContainerGO = new GameObject("GAME MANAGERS");
+            GameObject globalContainerGO = new GameObject("[Managers and Systems]");
+
+            GameObject managersContainerGO = new GameObject("[Managers]");
+            GameObject systemsContainerGO = new GameObject("[Systems]");
+
+            managersContainerGO.transform.parent = globalContainerGO.transform;
+            systemsContainerGO.transform.parent = globalContainerGO.transform;
 
             GameObject gameManagerGO = new GameObject("Game Manager");
-            GameObject gameStateManagerGO = new GameObject("Game State Manager");
-            GameObject gamePlayerManagerGO = new GameObject("Game Player Manager");
-            GameObject gameDebuggerManagerGO = new GameObject("Game Debugger");
+            GameObject gameStateManagerGO = new GameObject("State Manager");
+            GameObject gamePlayerManagerGO = new GameObject("Player Manager");
             GameObject playerInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/PlayerInputManager"));
 
+            GameObject gamePreferencesSystemGO = new GameObject("Preferences System");
+
             instance = gameManagerGO.AddComponent<GameManager>();
-            gameManagerGO.transform.parent = globalContainerGO.transform;
+            gameManagerGO.transform.parent = managersContainerGO.transform;
 
             instance.stateManager = gameStateManagerGO.AddComponent<GameStateManager>();
-            gameStateManagerGO.transform.parent = gameManagerGO.transform;
+            gameStateManagerGO.transform.parent = managersContainerGO.transform;
 
             instance.playerManager = gamePlayerManagerGO.AddComponent<GamePlayerManager>();
-            gamePlayerManagerGO.transform.parent = gameManagerGO.transform;
+            gamePlayerManagerGO.transform.parent = managersContainerGO.transform;
 
             instance.playerInputManager = playerInputManagerGO.GetComponent<PlayerInputManager>();
-            playerInputManagerGO.transform.parent = globalContainerGO.transform;
+            playerInputManagerGO.transform.parent = managersContainerGO.transform;
+
+            instance.preferencesSystem =gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>();
+            gamePreferencesSystemGO.transform.parent = systemsContainerGO.transform;
             #endregion
             
             DontDestroyOnLoad(globalContainerGO);
@@ -88,6 +100,7 @@ namespace QuietFallsGameManaging
             //GameManager.instance.inputManager.Initialize();
             GameManager.instance.stateManager.Initialize();
             GameManager.instance.playerManager.Initialize();
+            GameManager.instance.preferencesSystem.Initialize();
         } 
         #endregion
     }

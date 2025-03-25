@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 156043932}
   - component: {fileID: 156043931}
   - component: {fileID: 156043930}
+  - component: {fileID: 156043935}
   m_Layer: 5
   m_Name: Button_Deutsch
   m_TagString: Untagged
@@ -720,6 +721,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 156043935}
+        m_TargetAssemblyTypeName: Button_ChangeLanguageAndSave, Assembly-CSharp
+        m_MethodName: ChangeLanguageAndSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 339604701}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -794,6 +807,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156043928}
   m_CullTransparentMesh: 1
+--- !u!114 &156043935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156043928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0a016e0f51d42419f75d419e28f31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languageCode: de
 --- !u!1 &169365978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,6 +2142,7 @@ GameObject:
   - component: {fileID: 426596975}
   - component: {fileID: 426596977}
   - component: {fileID: 426596976}
+  - component: {fileID: 426596978}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2241,6 +2268,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426596974}
   m_CullTransparentMesh: 1
+--- !u!114 &426596978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426596974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af265b6544e3d24e9680acb0c25b3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translatedEntries:
+  - language: 0
+    text: Load Game
+  - language: 1
+    text: Carregar Jogo
+  - language: 2
+    text: Spiel laden
 --- !u!1 &512576819
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,6 +4874,7 @@ GameObject:
   - component: {fileID: 1241719894}
   - component: {fileID: 1241719896}
   - component: {fileID: 1241719895}
+  - component: {fileID: 1241719897}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4953,6 +5000,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241719893}
   m_CullTransparentMesh: 1
+--- !u!114 &1241719897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241719893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af265b6544e3d24e9680acb0c25b3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translatedEntries:
+  - language: 0
+    text: New Game
+  - language: 1
+    text: Novo Jogo
+  - language: 2
+    text: Neues Spiel
 --- !u!1 &1255457219
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,6 +5520,7 @@ GameObject:
   - component: {fileID: 1435398106}
   - component: {fileID: 1435398105}
   - component: {fileID: 1435398109}
+  - component: {fileID: 1435398110}
   m_Layer: 5
   m_Name: Button_BrazilianPortugues
   m_TagString: Untagged
@@ -5539,6 +5606,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1435398110}
+        m_TargetAssemblyTypeName: Button_ChangeLanguageAndSave, Assembly-CSharp
+        m_MethodName: ChangeLanguageAndSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 339604701}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5642,6 +5721,19 @@ MonoBehaviour:
             m_StringArgument: "Sele\xE7\xE3o de Idioma"
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1435398110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435398103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0a016e0f51d42419f75d419e28f31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languageCode: pt
 --- !u!1 &1438859455
 GameObject:
   m_ObjectHideFlags: 0
@@ -6878,6 +6970,7 @@ GameObject:
   - component: {fileID: 1797822027}
   - component: {fileID: 1797822026}
   - component: {fileID: 1797822030}
+  - component: {fileID: 1797822031}
   m_Layer: 5
   m_Name: Button_English
   m_TagString: Untagged
@@ -6963,6 +7056,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1797822031}
+        m_TargetAssemblyTypeName: Button_ChangeLanguageAndSave, Assembly-CSharp
+        m_MethodName: ChangeLanguageAndSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 339604701}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -7066,6 +7171,19 @@ MonoBehaviour:
             m_StringArgument: Language Select
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1797822031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797822024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0a016e0f51d42419f75d419e28f31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languageCode: en
 --- !u!1 &1798855514
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7397,7 @@ GameObject:
   - component: {fileID: 1810193664}
   - component: {fileID: 1810193666}
   - component: {fileID: 1810193665}
+  - component: {fileID: 1810193667}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -7404,6 +7523,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810193663}
   m_CullTransparentMesh: 1
+--- !u!114 &1810193667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810193663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af265b6544e3d24e9680acb0c25b3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translatedEntries:
+  - language: 0
+    text: Options
+  - language: 1
+    text: "Op\xE7\xF5es"
+  - language: 2
+    text: Optionen
 --- !u!1 &1816117205
 GameObject:
   m_ObjectHideFlags: 0

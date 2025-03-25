@@ -9,7 +9,7 @@ public class CameraStateMachine
     #region Constructors
     private CameraStateMachine()
     {
-        //Private default constructor to prevent instantiation without passing the GamePlayer
+        //Private default constructor to prevent instantiation without passing the required parameters.
     }
 
     public CameraStateMachine(GamePlayer parPlayer)

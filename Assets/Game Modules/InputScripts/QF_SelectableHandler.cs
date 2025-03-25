@@ -46,7 +46,7 @@ namespace QF_Tools {
         }
         private void OnDisable()
         {
-            Debug.LogWarning($"Disabled Selectable {this.gameObject.name}");
+            //Debug.LogWarning($"Disabled Selectable {this.gameObject.name}");
             transform.localScale = initialScale;
 
             if (optionalHighlightImage != null)

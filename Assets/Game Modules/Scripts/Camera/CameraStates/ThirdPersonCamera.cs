@@ -232,6 +232,7 @@ public class ThirdPersonCamera : CameraState
             input.isStickActive = true; // Track movement
 
             // Determine input source
+            // I am aware that storing the scheme in a string is unreliable, I will change it later. 
             input.currentLookScheme = context.control.device switch
             {
                 Mouse => "Mouse",
@@ -251,6 +252,7 @@ public class ThirdPersonCamera : CameraState
     {
         float mouseStep = 1f;
 
+        // I am aware that storing the scheme in a string is unreliable, I will change it later. 
         string scheme = context.control.device switch
         {
             Mouse => "Mouse",

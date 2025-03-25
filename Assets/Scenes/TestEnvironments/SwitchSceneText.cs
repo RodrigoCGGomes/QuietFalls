@@ -3,6 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class is absolutely a placeholder. It was created to be put in the following scenes:
+/// - ControlsTest, UI_Controls
+/// It was just a quick way to switch between the two scenes in those test scenes when you press Escape.
+/// The way it works is that those scripts are attached to the header UI element
+/// that says "Press (Start / Esc) to switch scenes."
+/// </summary>
 public class SwitchSceneText : MonoBehaviour
 {
     private void Awake()

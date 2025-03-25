@@ -877,6 +877,16 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1909104366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6293857366699137693, guid: ded3818ef3bc5d443b44e8e0f9257a22, type: 3}
+  m_PrefabInstance: {fileID: 4424932356715340440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2003033256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8263944548532422050, guid: ded3818ef3bc5d443b44e8e0f9257a22, type: 3}
+  m_PrefabInstance: {fileID: 4424932356715340440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2035017469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -953,6 +963,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2277532681476296486, guid: ded3818ef3bc5d443b44e8e0f9257a22, type: 3}
+      propertyPath: child1
+      value: 
+      objectReference: {fileID: 2003033256}
+    - target: {fileID: 2277532681476296486, guid: ded3818ef3bc5d443b44e8e0f9257a22, type: 3}
+      propertyPath: child2
+      value: 
+      objectReference: {fileID: 1909104366}
     - target: {fileID: 2820961469483091292, guid: ded3818ef3bc5d443b44e8e0f9257a22, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3

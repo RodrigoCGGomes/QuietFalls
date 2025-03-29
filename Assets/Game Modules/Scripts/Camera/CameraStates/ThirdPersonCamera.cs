@@ -122,6 +122,8 @@ public class ThirdPersonCamera : CameraState
 
     public override void Tick()
     {
+        
+
         // Figure out the ACTUAL target position (Smoothing and raising it)
         current.processedTargetPos = Vector3.Lerp(current.processedTargetPos, target.position + (Vector3.up * settings.cameraHeight), settings.targetSmoothing * Time.deltaTime);
 

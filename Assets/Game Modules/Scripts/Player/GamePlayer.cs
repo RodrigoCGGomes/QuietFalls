@@ -37,6 +37,7 @@ public class GamePlayer : CharacterEngine
 
         //Initialize PlayerCamera
         playerCamera.Initialize(this);
+
     }
 
     private void Update()

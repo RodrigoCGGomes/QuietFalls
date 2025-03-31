@@ -4,16 +4,20 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class MainLightDirection : MonoBehaviour
 {
+    [Header("Settings")]
+    [Range (0,1)] public float fogAmount;
+    public Gradient horizonGradient;
+    [Range(0,1)] public float fogLuminosity;
+    [Range(0, 1)] public float fogWashOut;
+
+    [Header("References")]
     [SerializeField] private Material skyMaterial;
     [SerializeField] private Light lightComponent;
     [SerializeField] private SimpleSunRotate sunRotate;
     [SerializeField] private Material poleLightMaterial;
-    public float DayNightRatio;
+    private float DayNightRatio;
 
-    [Header("Environment Colors")]
-    public Gradient skyColor;
-    public Gradient equatorColor;
-    public Gradient groundColor;
+    [Header("Curves")]
     public AnimationCurve sunsetDisappearanceCurve;
 
     [Header("Lights")]
@@ -30,10 +34,27 @@ public class MainLightDirection : MonoBehaviour
         // Evaluate intensity curve
         lightComponent.intensity = sunsetDisappearanceCurve.Evaluate(DayNightRatio) * 4f;
 
+
+        SetFogColor();
         LightLogic();
 
         DynamicGI.UpdateEnvironment();
     }
+
+    private void SetFogColor()
+    {
+        Color rawHorizonColor = horizonGradient.Evaluate(DayNightRatio);
+        Color horizonColorDarkened = rawHorizonColor * fogLuminosity;
+
+        Color grey = new Color(fogWashOut, fogWashOut, fogWashOut, 1f);
+
+        RenderSettings.fogColor = horizonColorDarkened + grey;
+
+        RenderSettings.fogDensity = fogAmount * 0.2f;
+
+        //transform.Rotate(Vector3.right * Time.deltaTime * 10);
+
+    }   
 
     private void LightLogic()
     {
@@ -56,4 +77,5 @@ public class MainLightDirection : MonoBehaviour
             }
         }
     }
+
 }

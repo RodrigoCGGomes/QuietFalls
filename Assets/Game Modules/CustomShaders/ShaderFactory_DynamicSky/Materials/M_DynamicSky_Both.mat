@@ -105,7 +105,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DayNightSlider: 0
+    - _DayNightSlider: 0.402
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -128,11 +128,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _StarHeight: 281.59
-    - _StarPower: 29.1
+    - _StarHeight: 277.7
+    - _StarPower: 33.1
     - _StarsIntensity: 1
-    - _SunIntensity: 800
-    - _SunSize: 0.06
+    - _SunIntensity: 795.5
+    - _SunSize: 0.026
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -145,11 +145,12 @@ Material:
     - _HorizonColor: {r: 0.61489856, g: 0.8738856, b: 0.9245283, a: 1}
     - _HorizonColorDay: {r: 0.27901387, g: 0.62264144, b: 0.5803083, a: 1}
     - _HorizonColorNight: {r: 0.105882354, g: 0.3764706, b: 0.44313726, a: 1}
-    - _MainLightDirection: {r: 0, g: -0.23813614, b: -0.97123194, a: 0}
+    - _HorizonColorOutput: {r: 0, g: 0, b: 0, a: 0}
+    - _MainLightDirection: {r: 0.1447427, g: 0.9831465, b: -0.11168152, a: 0}
     - _SkyColor: {r: 0.10849057, g: 0.2685586, b: 0.4339623, a: 1}
     - _SkyColorDay: {r: 0, g: 0.6135034, b: 0.9716981, a: 1}
     - _SkyColorNight: {r: 0, g: 0.20004553, b: 0.41509432, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SunColor: {r: 1, g: 0.6847419, b: 0.2028302, a: 0}
+    - _SunColor: {r: 1, g: 0.7378939, b: 0.33490568, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

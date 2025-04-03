@@ -46,7 +46,7 @@ public class LanguageSettings
             if (lang.code.Equals(savedCode, System.StringComparison.OrdinalIgnoreCase))
             {
                 currentLanguage = lang;
-                Debug.LogWarning($"Language preference loaded: {currentLanguage.displayName}");
+                //Debug.LogWarning($"Language preference loaded: {currentLanguage.displayName}");
             }
         }
 

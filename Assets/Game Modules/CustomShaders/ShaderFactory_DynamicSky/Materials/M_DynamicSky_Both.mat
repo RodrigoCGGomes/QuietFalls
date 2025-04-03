@@ -141,12 +141,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    - _GroundColor: {r: 0.28898183, g: 0.3207547, b: 0.30062866, a: 1}
     - _HorizonColor: {r: 0.61489856, g: 0.8738856, b: 0.9245283, a: 1}
     - _HorizonColorDay: {r: 0.27901387, g: 0.62264144, b: 0.5803083, a: 1}
     - _HorizonColorNight: {r: 0.105882354, g: 0.3764706, b: 0.44313726, a: 1}
     - _HorizonColorOutput: {r: 0, g: 0, b: 0, a: 0}
-    - _MainLightDirection: {r: 0.1447427, g: 0.9831465, b: -0.11168152, a: 0}
+    - _MainLightDirection: {r: -0.6891322, g: -0.62095255, b: -0.3735171, a: 0}
     - _SkyColor: {r: 0.10849057, g: 0.2685586, b: 0.4339623, a: 1}
     - _SkyColorDay: {r: 0, g: 0.6135034, b: 0.9716981, a: 1}
     - _SkyColorNight: {r: 0, g: 0.20004553, b: 0.41509432, a: 1}

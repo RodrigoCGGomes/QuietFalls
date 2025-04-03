@@ -52,19 +52,18 @@ public class MainLightDirection : MonoBehaviour
 
         RenderSettings.fogDensity = fogAmount * 0.2f;
 
-        //transform.Rotate(Vector3.right * Time.deltaTime * 10);
+        //transform.Rotate(Vector3.right * Time.deltaTime * 1f);
 
     }   
 
     private void LightLogic()
     {
-        if (DayNightRatio > 0.3f)
+        if (DayNightRatio > 0.6f)
         { 
             foreach(Light light in poleLights)
             {
                 light.enabled = true;
                 poleLightMaterial.EnableKeyword("_EMISSION");
-                Debug.Log("Lights on");
             }
         }
         else
@@ -73,7 +72,6 @@ public class MainLightDirection : MonoBehaviour
             {
                 light.enabled = false;
                 poleLightMaterial.DisableKeyword("_EMISSION");
-                Debug.Log("Lights off");
             }
         }
     }

@@ -9,6 +9,6 @@ public class GameSettingsSystem : MonoBehaviour
     {
         //Application.targetFrameRate = 300;
         //QualitySettings.resolutionScalingFixedDPIFactor = 1f;
-        Debug.Log($"GameSettingSystem {this.gameObject.name}");
+        //Debug.Log($"GameSettingSystem {this.gameObject.name}");
     }
 }

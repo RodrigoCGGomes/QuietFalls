@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XNode;
 
 public class DialogueNode : Node
 {
-
     [Input] [TextArea] public string input;
 	public enum EnumTest { A, B, C }
 	[Input] public EnumTest enumInput;
@@ -14,7 +11,6 @@ public class DialogueNode : Node
     // Use this for initialization
     protected override void Init() {
 		base.Init();
-		
 	}
 
 	public virtual void Execute()
@@ -41,7 +37,6 @@ public class DialogueNode : Node
 
         }
     }
-
 
 	// Return the correct value of an output port when requested
 	public override object GetValue(NodePort port) {

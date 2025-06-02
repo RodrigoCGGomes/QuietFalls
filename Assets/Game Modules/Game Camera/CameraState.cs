@@ -58,6 +58,7 @@ public abstract class CameraState
             player.playerCamera.transform.rotation.eulerAngles.y);   
         
         float sidewaysRatio = Mathf.Sin(-angleDifference * Mathf.Deg2Rad);  // Normalize: -1 for RIGHT, 1 for LEFT, 0 when aligned (0° or 180°)
+        //Debug.Log($"{parPlayerRelativeRotation.eulerAngles.y}");
         sidewaysRatio *= parMoveMultiplier * parRatioScale;                 // Process the value, should be zero if character is moving, should be scaled.
 
         return sidewaysRatio;

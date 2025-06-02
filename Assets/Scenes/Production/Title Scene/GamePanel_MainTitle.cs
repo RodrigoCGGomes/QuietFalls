@@ -5,6 +5,6 @@ public class GamePanel_MainTitle : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Valley.0002");
     }
 }

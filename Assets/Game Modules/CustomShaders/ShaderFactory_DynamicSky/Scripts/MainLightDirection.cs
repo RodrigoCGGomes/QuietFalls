@@ -25,7 +25,10 @@ public class MainLightDirection : MonoBehaviour
 
     private void Update()
     {
-        skyMaterial.SetVector("_MainLightDirection", transform.forward);
+        if (skyMaterial != null)
+        {
+            skyMaterial.SetVector("_MainLightDirection", transform.forward);
+        }
 
         // Shader Graph logic:
         float dot = Vector3.Dot(transform.forward, Vector3.up);
@@ -52,8 +55,6 @@ public class MainLightDirection : MonoBehaviour
 
         RenderSettings.fogDensity = fogAmount * 0.2f;
 
-        //transform.Rotate(Vector3.right * Time.deltaTime * 1f);
-
     }   
 
     private void LightLogic()
@@ -63,7 +64,10 @@ public class MainLightDirection : MonoBehaviour
             foreach(Light light in poleLights)
             {
                 light.enabled = true;
-                poleLightMaterial.EnableKeyword("_EMISSION");
+                if (poleLightMaterial != null)
+                { 
+                    poleLightMaterial.EnableKeyword("_EMISSION");
+                }
             }
         }
         else
@@ -71,7 +75,10 @@ public class MainLightDirection : MonoBehaviour
             foreach (Light light in poleLights)
             {
                 light.enabled = false;
-                poleLightMaterial.DisableKeyword("_EMISSION");
+                if (poleLightMaterial != null)
+                {
+                    poleLightMaterial.DisableKeyword("_EMISSION");
+                }
             }
         }
     }

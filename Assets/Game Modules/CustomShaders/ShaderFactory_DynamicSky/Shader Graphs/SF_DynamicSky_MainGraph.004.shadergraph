@@ -7,13 +7,7 @@
             "m_Id": "a1b582abbb8c45d5b951234a1826c26b"
         },
         {
-            "m_Id": "c06f528a4b9245448994a0c4bedb8c59"
-        },
-        {
             "m_Id": "367da3bc5af841b89078d511e145cb9e"
-        },
-        {
-            "m_Id": "2155ad516db94958a10d18bc2dfb5eae"
         },
         {
             "m_Id": "ca60c92ac54143b3a4ddae8fab681641"
@@ -196,9 +190,6 @@
             "m_Id": "c0379ba8b9004250b0c47bd10cb6b590"
         },
         {
-            "m_Id": "58d2248189dd4fd08a735b14a976308d"
-        },
-        {
             "m_Id": "f6caaf3f39344164a811c2a983465e89"
         },
         {
@@ -251,6 +242,9 @@
         },
         {
             "m_Id": "153932a2fa3941448bd973f50336578e"
+        },
+        {
+            "m_Id": "262f53856d9240ec999d9cb3932337ab"
         }
     ],
     "m_GroupDatas": [
@@ -1479,7 +1473,7 @@
     "m_Title": "Create a vertical gradient",
     "m_Position": {
         "x": -5679.0,
-        "y": -387.0
+        "y": -386.999755859375
     }
 }
 
@@ -1788,8 +1782,8 @@
     "m_ObjectId": "12f650d130cb4c4c8527695091b3c414",
     "m_Title": "Sun mask (Sky)",
     "m_Position": {
-        "x": -2930.0,
-        "y": -1459.0
+        "x": -2929.99951171875,
+        "y": -1458.999755859375
     }
 }
 
@@ -2333,36 +2327,6 @@
 }
 
 {
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "2155ad516db94958a10d18bc2dfb5eae",
-    "m_Guid": {
-        "m_GuidSerialized": "debd0943-9e65-43b5-8b9a-50b6f5476199"
-    },
-    "m_Name": "HorizonColorDay",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "HorizonColorDay",
-    "m_DefaultReferenceName": "_HorizonColorDay",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.27901387214660647,
-        "g": 0.6226415038108826,
-        "b": 0.5803083777427673,
-        "a": 1.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "220f8cc161244e69bf69b76d995385c1",
@@ -2393,7 +2357,7 @@
     "m_Title": "Sun Circle",
     "m_Position": {
         "x": -5295.0,
-        "y": -1887.0
+        "y": -1886.99951171875
     }
 }
 
@@ -2470,13 +2434,57 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ColorNode",
+    "m_ObjectId": "262f53856d9240ec999d9cb3932337ab",
+    "m_Group": {
+        "m_Id": "8ef1d4018fde4c84a4d706d6a8e059d2"
+    },
+    "m_Name": "Color",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2490.99951171875,
+            "y": 1001.9998779296875,
+            "width": 165.999755859375,
+            "height": 34.0001220703125
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "e6da9fd7c3cc4af3920a1858bb24bf74"
+        }
+    ],
+    "synonyms": [
+        "rgba"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Color": {
+        "color": {
+            "r": 0.27901387214660647,
+            "g": 0.6226415038108826,
+            "b": 0.5803083777427673,
+            "a": 1.0
+        },
+        "mode": 0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GroupData",
     "m_ObjectId": "27eaa58ef91f4bfdbf9d6349246c8cbb",
     "m_Title": "Colorize Sun",
     "m_Position": {
         "x": -4238.0,
-        "y": -1784.0
+        "y": -1783.999755859375
     }
 }
 
@@ -2625,7 +2633,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.20000000298023225,
+    "m_Value": 0.05000000074505806,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -2967,7 +2975,7 @@
     "m_ObjectId": "32105d9d94e648bf9afe34d8f9a5fa4f",
     "m_Title": "Colorize Bottom",
     "m_Position": {
-        "x": -2926.0,
+        "x": -2925.99951171875,
         "y": 1829.0
     }
 }
@@ -3406,8 +3414,8 @@
     "m_ObjectId": "4046f04fe9e74cf7b9101e3e0a97d932",
     "m_Title": "Stars",
     "m_Position": {
-        "x": -3960.0,
-        "y": -1120.0
+        "x": -3959.999755859375,
+        "y": -1119.999755859375
     }
 }
 
@@ -3620,7 +3628,7 @@
     "m_ObjectId": "4ada6160e48a41169c33ac5705727a8f",
     "m_Title": "Colorize Sky Day",
     "m_Position": {
-        "x": -3475.0,
+        "x": -3474.999755859375,
         "y": -133.0
     }
 }
@@ -3742,8 +3750,8 @@
     "m_ObjectId": "4f1412c4f9434f87a399b7236fb66667",
     "m_Title": "Extract the horizon",
     "m_Position": {
-        "x": -3999.0,
-        "y": 845.0
+        "x": -3998.999755859375,
+        "y": 845.00048828125
     }
 }
 
@@ -3907,42 +3915,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "58d2248189dd4fd08a735b14a976308d",
-    "m_Group": {
-        "m_Id": "8ef1d4018fde4c84a4d706d6a8e059d2"
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -2490.99951171875,
-            "y": 1001.9998779296875,
-            "width": 165.999755859375,
-            "height": 34.0001220703125
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "a4626eb00fe549d3931154c652888d19"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "2155ad516db94958a10d18bc2dfb5eae"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "5aa6343c562b45dfb00d82e73cc17b7e",
     "m_Id": 1,
@@ -4067,8 +4039,8 @@
     "m_ObjectId": "5ea882b535d94297a838cc0decbfce0b",
     "m_Title": "Night Sky + Stars",
     "m_Position": {
-        "x": -2555.0,
-        "y": -767.0
+        "x": -2554.99951171875,
+        "y": -766.999755859375
     }
 }
 
@@ -4818,9 +4790,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "a1b582abbb8c45d5b951234a1826c26b"
-        },
-        {
-            "m_Id": "c06f528a4b9245448994a0c4bedb8c59"
         }
     ]
 }
@@ -4855,8 +4824,8 @@
     "m_ObjectId": "8ef1d4018fde4c84a4d706d6a8e059d2",
     "m_Title": "Colorize Horizon Day",
     "m_Position": {
-        "x": -2516.0,
-        "y": 842.0
+        "x": -2515.9990234375,
+        "y": 842.0005493164063
     }
 }
 
@@ -4890,8 +4859,8 @@
     "m_ObjectId": "9160897218e64188b0e07f2d32f135ac",
     "m_Title": "Overall Intensity",
     "m_Position": {
-        "x": -1067.0,
-        "y": 552.0
+        "x": -1066.99951171875,
+        "y": 552.00048828125
     }
 }
 
@@ -5186,8 +5155,8 @@
     "m_ObjectId": "9f6cf8f070314f0fa0740abec60e7de2",
     "m_Title": "Skybox + Sun",
     "m_Position": {
-        "x": -129.0,
-        "y": 297.0
+        "x": -128.99951171875,
+        "y": 297.00048828125
     }
 }
 
@@ -5339,31 +5308,6 @@
     },
     "isMainColor": false,
     "m_ColorMode": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "a4626eb00fe549d3931154c652888d19",
-    "m_Id": 0,
-    "m_DisplayName": "HorizonColorDay",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
 }
 
 {
@@ -5689,8 +5633,8 @@
     "m_ObjectId": "aeae4bcc36984fd0ad72e3565b5246f5",
     "m_Title": "0 = Day, 1 = Night",
     "m_Position": {
-        "x": -3797.0,
-        "y": 304.0
+        "x": -3796.999755859375,
+        "y": 304.00048828125
     }
 }
 
@@ -5916,8 +5860,8 @@
     "m_ObjectId": "b2437714f8c24175bd769183987af2bc",
     "m_Title": "Day/Night Sky Blend",
     "m_Position": {
-        "x": -2212.0,
-        "y": -156.0
+        "x": -2211.99951171875,
+        "y": -155.999755859375
     }
 }
 
@@ -5941,7 +5885,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 10.0,
+    "m_Value": 50.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 5.0,
@@ -6248,36 +6192,6 @@
 }
 
 {
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "c06f528a4b9245448994a0c4bedb8c59",
-    "m_Guid": {
-        "m_GuidSerialized": "11b00c05-e824-4854-af80-038a57574602"
-    },
-    "m_Name": "HorizonColorNight",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "HorizonColorNight",
-    "m_DefaultReferenceName": "_HorizonColorNight",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.27901387214660647,
-        "g": 0.6226415038108826,
-        "b": 0.5803083777427673,
-        "a": 1.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "c13641d1391649f4b0d04fd7546f1008",
@@ -6492,8 +6406,8 @@
     "m_ObjectId": "c82bbdeb7570433cae73bb84f2fe5b4f",
     "m_Title": "Smooth out",
     "m_Position": {
-        "x": -4188.0,
-        "y": 1247.0
+        "x": -4187.99951171875,
+        "y": 1247.00048828125
     }
 }
 
@@ -6517,7 +6431,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 30.0,
+    "m_Value": 6.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.009999999776482582,
@@ -6622,7 +6536,7 @@
     "m_Title": "Colorize Sky Night",
     "m_Position": {
         "x": -3474.0,
-        "y": -564.0
+        "y": -563.999755859375
     }
 }
 
@@ -6662,9 +6576,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "ed0e9200929d4720832ef85a0ada129b"
-        },
-        {
-            "m_Id": "2155ad516db94958a10d18bc2dfb5eae"
         }
     ]
 }
@@ -6830,7 +6741,7 @@
     "m_Title": "Smooth out",
     "m_Position": {
         "x": -4408.0,
-        "y": -358.0
+        "y": -357.999755859375
     }
 }
 
@@ -6945,9 +6856,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.5554912686347961,
-        "g": 0.6886792182922363,
-        "b": 0.5660374760627747,
+        "r": 0.3199999928474426,
+        "g": 0.3199999928474426,
+        "b": 0.3199999928474426,
         "a": 1.0
     },
     "isMainColor": false,
@@ -7240,6 +7151,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "e6da9fd7c3cc4af3920a1858bb24bf74",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "e79d21ca1b66422d8b0f8c5d6689b488",
     "m_Id": 3,
@@ -7292,8 +7228,8 @@
     "m_ObjectId": "e8bb82f969d2424c8888ed6237ab5816",
     "m_Title": "Sun Intensity",
     "m_Position": {
-        "x": -3690.0,
-        "y": -1790.0
+        "x": -3689.999755859375,
+        "y": -1789.999755859375
     }
 }
 
@@ -7317,7 +7253,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -7394,9 +7330,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.16078431904315949,
-        "g": 0.5137255191802979,
-        "b": 0.7176470756530762,
+        "r": 0.5803921818733215,
+        "g": 0.8470588326454163,
+        "b": 1.0,
         "a": 1.0
     },
     "isMainColor": false,
@@ -7530,7 +7466,7 @@
     "m_Title": "Extract upper half",
     "m_Position": {
         "x": -4726.0,
-        "y": -354.0
+        "y": -353.999755859375
     }
 }
 
@@ -7758,7 +7694,7 @@
     "m_ObjectId": "fccf6efb4841421ab0eff7183fa2a7dc",
     "m_Title": "Sky + (Ground + Horizon)",
     "m_Position": {
-        "x": -1422.0,
+        "x": -1421.99951171875,
         "y": 558.0
     }
 }

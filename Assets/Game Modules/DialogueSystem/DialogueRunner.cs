@@ -24,7 +24,6 @@ public class DialogueRunner : MonoBehaviour
 
     public static void ShowUI()
     {
-        Debug.LogWarning("ShowUI()");
         //instance.dialogueUI.SetActive(true);
     }
 

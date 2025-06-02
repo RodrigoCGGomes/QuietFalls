@@ -387,8 +387,8 @@
     "m_ObjectId": "03e1b148bb72402fbb1d8ff176610b75",
     "m_Title": "Use Main Axis's Normalized Axis",
     "m_Position": {
-        "x": -3481.0,
-        "y": -132.0
+        "x": -3481.00048828125,
+        "y": -132.00021362304688
     }
 }
 

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 // UNDER IMPLEMENTATION! TODO: TURN PLAUYER.CS INTO THE WALKING AROUND STATE AND TURN PLAYER.CS INTO THE STATE MACHINE.
 
 /// <summary>
@@ -42,9 +42,30 @@ public abstract class PlayerState
     /// End of the life cycle of a Player State
     /// </summary>
     public abstract void ExitState();
-    #endregion 
+    #endregion
+
+    #region Tools
+    /// <summary>
+    /// Calculates the relative direction between the player input (moveInputAngle) and
+    /// the camera (playerCamera).
+    /// </summary>
+    public Quaternion GetPlayerCameraRelativeRotation()
+    {
+        if (player.moveInputVector == Vector2.zero) // LEMBRAR DE TROCAR VECTOR2.ZERO PELO BOOLEAN DO NOVO INPUT RELAY
+            return player.transform.rotation; // mantém a rotação atual
+
+        /// Calculates the direction of the WASD input (moveInputVector) and
+        /// assigns it into moveInputAngle as a 0-360 value.
+        float moveInputAngle = Mathf.Atan2(-player.moveInputVector.y, player.moveInputVector.x) * Mathf.Rad2Deg; //It's 90 degrees off
+        moveInputAngle = (moveInputAngle + 450f) % 360f; //90 Degree Correction
+
+        // Do the actual calculation of the relative rotation
+        Quaternion result = Quaternion.Euler(0f, player.playerCamera.transform.rotation.eulerAngles.y + moveInputAngle, 0f);
+        return result;
+    }
+    #endregion
 }
-public enum PlayerStateType
+    public enum PlayerStateType
 {
     WalkingAround,
     Blocked,

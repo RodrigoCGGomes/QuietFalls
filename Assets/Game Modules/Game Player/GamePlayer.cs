@@ -41,10 +41,14 @@ public class GamePlayer : CharacterEngine
         GamePlayerManager.RegisterPlayer(this);
     }
 
+    /// <summary>
+    /// GamePlayer's Update method is the MonoBehaviour method that is called every frame
+    /// and triggers the Player's and the PlayerCamera's state machine.
+    /// </summary>
     private void Update()
     {
-        stateMachine.currentState.Tick();
-        playerCamera.stateMachine.currentState.Tick();
+        stateMachine.currentState.Tick();               // Trigger the PlayerState's Tick method.
+        playerCamera.stateMachine.currentState.Tick();  // Trigger the CameraState's Tick method.
     }
     #endregion
 
@@ -61,16 +65,19 @@ public class GamePlayer : CharacterEngine
         }
         playerCamera.stateMachine.currentState.OnMoveRelay(context);
     }
+
     public void OnLook(InputAction.CallbackContext context)
     {
         playerCamera.stateMachine.currentState.OnLookRelay(context);
         //Debug.LogWarning($"Look value: {context.ReadValue<Vector2>()}");
         //Debug.LogWarning($"{context.control.device}");
     }
+
     public void OnZoom(InputAction.CallbackContext context)
     {
         playerCamera.stateMachine.currentState.OnZoomRelay(context);
     }
+
     public void OnBack(InputAction.CallbackContext context)
     {
         playerCamera.stateMachine.currentState.OnBackRelay(context);

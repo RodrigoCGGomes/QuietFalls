@@ -57,11 +57,13 @@ public class GamePlayerManager : MonoBehaviour
 
     public static void PlayerResumePlaying()
     {
-        GameStateManager.ChangeState(GameStateManager.instance.stateMachine.factory.PlayerControlledState());
+        var currentSubState = GameStateManager.instance.stateMachine.CurrentSubState;
+        currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.PlayerControlledState());
+
         instance.currentRegisteredPlayer.GetStateMachine().ChangeState(new Walking(GetRegisteredPlayer()));
         ThirdPersonCamera tp_camera = new ThirdPersonCamera(GetRegisteredPlayer());
         instance.currentPlayerCamera.stateMachine.ChangeState(tp_camera);
-        tp_camera.EnterState();
+
         Debug.Log("PlayerResumePlaying()");
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Base class for player movement logic, handling fundamental navigation.
@@ -38,5 +39,6 @@ public class CharacterEngine : MonoBehaviour
     public virtual void Move(Vector3 direction, float speed)
     {
         agent.velocity = (direction * speed); //Genius piece of code
+        Debug.DrawRay(agent.transform.position, direction * 2f, Color.red);
     }
 }

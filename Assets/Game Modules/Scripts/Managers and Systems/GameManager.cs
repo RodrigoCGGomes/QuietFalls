@@ -53,42 +53,66 @@ namespace GameModules.GameManagers
         /// <summary>
         /// This method is only called once at the beginning of the game by GameManager.cs and it spawns the GameManagers.
         /// The Game Managers are scene persistent and are static references to the game's main systems.
+        /// Each one is a GameObject named after the component it contains for readability.
         /// </summary>
         private static void SpawnGameManagers()
         {
             #region Instantiate Gameobjects
-            GameObject globalContainerGO = new GameObject("[Managers and Systems]");
 
-            GameObject managersContainerGO = new GameObject("[Managers]");
-            GameObject systemsContainerGO = new GameObject("[Systems]");
+            // This code creates those gameobjects in the hierarchy:
 
-            managersContainerGO.transform.parent = globalContainerGO.transform;
-            systemsContainerGO.transform.parent = globalContainerGO.transform;
+            //      [Managers and Systems]
+            //      |-- [Managers]
+            //      |   |-- [Game Manager]
+            //      |   |-- [State Manager]
+            //      |   |-- [Player Manager]
+            //      |   `-- [PlayerInputManager]
+            //      |-- [Systems]
+            //      |   `-- [Preferences System]
 
-            GameObject gameManagerGO = new GameObject("Game Manager");
-            GameObject gameStateManagerGO = new GameObject("State Manager");
-            GameObject gamePlayerManagerGO = new GameObject("Player Manager");
-            GameObject playerInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/PlayerInputManager"));
+            // [Managers and Systems]
+            GameObject managersAndSystemsGO = new GameObject("[Managers and Systems]");
 
-            GameObject gamePreferencesSystemGO = new GameObject("Preferences System");
+            // [Managers]
+            GameObject managersContainerGO = new GameObject("[Managers]");          // Creates the empty gameobject.
+            managersContainerGO.transform.parent = managersAndSystemsGO.transform;  // Make it a child of the root gameobject.
 
-            instance = gameManagerGO.AddComponent<GameManager>();
-            gameManagerGO.transform.parent = managersContainerGO.transform;
+            // [Game Manager]
+            GameObject gameManagerGO = new GameObject("[Game Manager]");                    // Creates the GameObject.         
+            instance = gameManagerGO.AddComponent<GameManager>();                           // Adds the GameManager component.
+            gameManagerGO.transform.parent = managersContainerGO.transform;                 // Makes it a child of the "[Managers]" go.
 
-            instance.stateManager = gameStateManagerGO.AddComponent<GameStateManager>();
-            gameStateManagerGO.transform.parent = managersContainerGO.transform;
+            // [State Manager]
+            GameObject gameStateManagerGO = new GameObject("[State Manager]");              // Creates the GameObject.     
+            instance.stateManager = gameStateManagerGO.AddComponent<GameStateManager>();    // Adds the GameStateManager component.
+            gameStateManagerGO.transform.parent = managersContainerGO.transform;            // Makes it a child of the "[Managers]" go.
 
-            instance.playerManager = gamePlayerManagerGO.AddComponent<GamePlayerManager>();
-            gamePlayerManagerGO.transform.parent = managersContainerGO.transform;
+            // [Player Manager]
+            GameObject gamePlayerManagerGO = new GameObject("[Player Manager]");            // Creates the GameObject.
+            instance.playerManager = gamePlayerManagerGO.AddComponent<GamePlayerManager>(); // Adds the GamePlayerManager component.
+            gamePlayerManagerGO.transform.parent = managersContainerGO.transform;           // Makes it a child of the "[Managers]" go.
+            
+            // [Player Input Manager]
+            GameObject playerInputManagerGO = Instantiate(Resources.Load<GameObject>("GameManagerPrefabs/PlayerInputManager"));     // Creates the GameObject.
+            instance.playerInputManager = playerInputManagerGO.GetComponent<PlayerInputManager>();                                  // Adds the PlayerInputManager component.
+            playerInputManagerGO.name = "[Player Input Manager]";                                                                   // Gets rid of the '(Clone)' suffix caused by Instantiate.
+            playerInputManagerGO.transform.parent = managersContainerGO.transform;                                                  // Makes it a child of the "[Managers]" go.
 
-            instance.playerInputManager = playerInputManagerGO.GetComponent<PlayerInputManager>();
-            playerInputManagerGO.transform.parent = managersContainerGO.transform;
+            // [Systems]
+            GameObject systemsContainerGO = new GameObject("[Systems]");            // Creates the empty gameobject.
+            systemsContainerGO.transform.parent = managersAndSystemsGO.transform;   // Make it a child of the root gameobject.
 
-            instance.preferencesSystem =gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>();
+            // [Preferences System]
+            GameObject gamePreferencesSystemGO = new GameObject("[Preferences System]");                      // Creates the empty gameobject.
+            instance.preferencesSystem = gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>();
             gamePreferencesSystemGO.transform.parent = systemsContainerGO.transform;
+
+
+
+
             #endregion
             
-            DontDestroyOnLoad(globalContainerGO);
+            DontDestroyOnLoad(managersAndSystemsGO);
         }
 
         /// <summary>

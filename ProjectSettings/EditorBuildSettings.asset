@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Production/Title Scene/TitleScene.unity
     guid: 8fea633368d3cfb4ea5a739d1f7aad3a
   - enabled: 1
+    path: Assets/Scenes/Production/Valley/Scene Files/Valley.0002.unity
+    guid: d6c10dc9b13ed37448b2b9aadfb42fdd
+  - enabled: 1
     path: Assets/Scenes/TestEnvironments/ControlsTest/ControlsTest.unity
     guid: 964b81c00b94c0743b40406657a1a29a
   - enabled: 1

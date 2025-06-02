@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - BACKFACE_NORMAL_MODE_MIRROR
-  - _WINDQUALITY_BEST
+  - _WINDQUALITY_FAST
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
@@ -58,7 +58,7 @@ Material:
     - BACKFACE_NORMAL_MODE: 1
     - EFFECT_BILLBOARD: 0
     - EFFECT_EXTRA_TEX: 0
-    - _AlphaClipThreshold: 0.33
+    - _AlphaClipThreshold: 0.159
     - _Glossiness: 0.08
     - _HueVariationKwToggle: 0
     - _Metallic: 0
@@ -68,12 +68,12 @@ Material:
     - _QueueOffset: 0
     - _SubsurfaceIndirect: 0.582
     - _SubsurfaceKwToggle: 1
-    - _WINDQUALITY: 4
+    - _WINDQUALITY: 2
     - _WindQuality: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariationColor: {r: 0.9245283, g: 0.8059641, b: 0.5451228, a: 1}
-    - _SubsurfaceColor: {r: 0.40775186, g: 0.7264151, b: 0.46298686, a: 1}
+    - _SubsurfaceColor: {r: 0.63153493, g: 0.6603774, b: 0.27100393, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &579978173108491744

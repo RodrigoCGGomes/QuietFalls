@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ThirdPersonCamera : CameraState
 {
+    #region Struct Declarations
     /// <summary> Struct that holds all the settings for the camera. </summary>
     [Serializable] public struct Settings
     {
@@ -100,6 +101,7 @@ public class ThirdPersonCamera : CameraState
         public float smoothSomething;
 
     }
+    #endregion
 
     #region Variables 
     private Settings settings = Settings.Default;
@@ -119,23 +121,24 @@ public class ThirdPersonCamera : CameraState
 
     public override void EnterState()
     {
+        Debug.Log($"CameraState.EnterState(); - {this}");
+
         //Reset lerpedTargetPos so it starts at target position.
         current.processedTargetPos = target.position;
-
-        Debug.LogWarning("Camera : ThirdPersonCamera.EnterState()");
 
         player.ResetVariables();
     }
 
     public override void ExitState()
     {
-        Debug.LogWarning("ThirdPersonCamera.ExitState()");
+        Debug.Log($"CameraState.ExitState(); - {this}");
     }
 
     public override void Tick()
     {
         // Test, might like it
-        current.sidewaysRatioSmooth = Mathf.Lerp(current.sidewaysRatioSmooth, current.sidewaysRatio, Time.deltaTime * 5f);
+        current.sidewaysRatioSmooth = Mathf.Lerp(current.sidewaysRatioSmooth, current.sidewaysRatio, Time.deltaTime * 5f); 
+
         current.smoothOrbitDist = Mathf.Lerp(current.smoothOrbitDist, current.targetOrbitDist, Time.deltaTime * 5f);
 
         // Figure out the ACTUAL target position (Smoothing and raising it)
@@ -166,7 +169,7 @@ public class ThirdPersonCamera : CameraState
                 stickMultiplier = 1f;
                 break;
         }
-        current.yaw += ((input.lookVectorSmooth.x * stickMultiplier) + (current.sidewaysRatio)) * settings.rotationSpeed * Time.deltaTime + (input.lookVectorSmooth.x * mouseMultiplier);
+        current.yaw += ((input.lookVectorSmooth.x * stickMultiplier) + (current.sidewaysRatioSmooth)) * settings.rotationSpeed * Time.deltaTime + (input.lookVectorSmooth.x * mouseMultiplier);
         current.pitch -= (input.lookVectorSmooth.y * stickMultiplier * settings.rotationSpeed * Time.deltaTime) + (input.lookVectorSmooth.y * mouseMultiplier);
         current.pitch = Mathf.Clamp(current.pitch, settings.minPitchAngle, settings.maxPitchAngle);
 
@@ -225,11 +228,14 @@ public class ThirdPersonCamera : CameraState
 
         player.playerCamera.transform.LookAt(current.processedTargetPos);   // Camera should be always be looking at lerped target.
 
+
         current.sidewaysRatio = base.CalculateSidewaysRatio(
-            player.walkingState.playerRelRot, 
+            player.GetStateMachine().currentState.GetPlayerCameraRelativeRotation(),
             player.moveValue.magnitude, 
             settings.sidewaysRatioMultiplier
             );
+
+        // Debug.Log(player.GetStateMachine().currentState.GetPlayerCameraRelativeRotation().eulerAngles.y);  
     }
 
     #region Input Relays
@@ -325,8 +331,8 @@ public class ThirdPersonCamera : CameraState
         //Debug.Log("Pressed Esc/Back while on ThirdPersonCamera");
         if (context.phase == InputActionPhase.Started) 
         {
-            GameStateManager.ChangeState(GameStateManager.instance.stateMachine.factory.CutSceneState());
-        
+            var currentSubState = GameStateManager.instance.stateMachine.CurrentSubState;
+            currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.CutSceneState());
         }
 
     }

@@ -329,11 +329,12 @@ public class ThirdPersonCamera : CameraState
     public override void OnBackRelay(InputAction.CallbackContext context)
     {
         //Debug.Log("Pressed Esc/Back while on ThirdPersonCamera");
-        if (context.phase == InputActionPhase.Started) 
+        /*if (context.phase == InputActionPhase.Started) 
         {
             var currentSubState = GameStateManager.instance.stateMachine.CurrentSubState;
             currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.CutSceneState());
-        }
+        }*/
+        Debug.LogWarning("Here we had a code that changed the GameState to CutSceneState");
 
     }
     #endregion

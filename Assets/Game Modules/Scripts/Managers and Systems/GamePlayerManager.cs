@@ -57,13 +57,15 @@ public class GamePlayerManager : MonoBehaviour
 
     public static void PlayerResumePlaying()
     {
+        /* Used to set up all of the states to resume player playing, but now that I think about it, this should be GameState's job.
         var currentSubState = GameStateManager.instance.stateMachine.CurrentSubState;
         currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.PlayerControlledState());
 
         instance.currentRegisteredPlayer.GetStateMachine().ChangeState(new Walking(GetRegisteredPlayer()));
         ThirdPersonCamera tp_camera = new ThirdPersonCamera(GetRegisteredPlayer());
         instance.currentPlayerCamera.stateMachine.ChangeState(tp_camera);
+        */
 
-        Debug.Log("PlayerResumePlaying()");
+        Debug.LogWarning("PlayerResumePlaying(); Commented out");
     }
 }

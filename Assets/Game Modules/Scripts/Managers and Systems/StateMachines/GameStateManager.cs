@@ -9,13 +9,13 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager instance;
     public GameStateMachine stateMachine;
 
-
     public void Initialize()
     {
         Debug.Log("GameStateManager.Initialize()");
 
         instance = this;                                    // Singleton instance.
-        stateMachine = new GameStateMachine();              // Instantiate the GameStateMachine
+
+        stateMachine = new GameStateMachine(null, new GameStateFactory());              // Instantiate the GameStateMachine
 
         #region Determine the initial state
 
@@ -23,13 +23,13 @@ public class GameStateManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "SplashSequence":
-                ChangeState(new PreGameState(stateMachine, true));  // Set the initial state to PreGameState
+                stateMachine.ChangeState(new PreGameState(stateMachine, true));  // Set the initial state to PreGameState
                 return;
             case "SampleScene":
-                ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
+                stateMachine.ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
                 return;
-            default: 
-                ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
+            default:
+                stateMachine.ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
                 Debug.LogWarning($"GameStateManager.Initialize() - Unknown scene '{SceneManager.GetActiveScene().name}' detected. Defaulting to PreGameState.");
                 break;
         }   
@@ -39,10 +39,11 @@ public class GameStateManager : MonoBehaviour
 
     public void Update()
     {
-        stateMachine.CurrentState?.UpdateStates();
+        stateMachine.GetRootState()?.CascadeTick();
     }
 
-    public static void ChangeState(GameBaseState newState)
+    /* THIS WHOLE THING SHOULD BE INSIDE STATE MACHINE IF WE'RE GOING THROUGH THE GENERIC ROUTE
+     public static void ChangeState(GameState newState)
     {
         Debug.Log($"GameStateManager.ChangeState (new State = {newState});");
 
@@ -54,6 +55,7 @@ public class GameStateManager : MonoBehaviour
         // Let the current state decide how to switch
         current.SwitchStates(newState);
     }
+    */
 
     public static GameStateFactory GetFactory()
     {

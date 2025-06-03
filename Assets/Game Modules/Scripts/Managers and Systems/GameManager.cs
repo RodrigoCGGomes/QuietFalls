@@ -69,6 +69,9 @@ namespace GameModules.GameManagers
             //      |   `-- [PlayerInputManager]
             //      |-- [Systems]
             //      |   `-- [Preferences System]
+            //      |   '-- [Canvas System]
+            //      |-- [Debuggers and Helpers]
+            //          `-- [OnScreenDebugSystem]
 
             // [Managers and Systems]
             GameObject managersAndSystemsGO = new GameObject("[Managers and Systems]");
@@ -107,11 +110,28 @@ namespace GameModules.GameManagers
             instance.preferencesSystem = gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>();
             gamePreferencesSystemGO.transform.parent = systemsContainerGO.transform;
 
+            // [Canvas System]
+            GameObject canvasSystemGO = new GameObject("[Canvas System]"); // Creates the empty gameobject.
+            canvasSystemGO.transform.parent = systemsContainerGO.transform; // Make it a child of the "[Systems]" go.   
+            CanvasSystem canvasSystem = canvasSystemGO.AddComponent<CanvasSystem>();                  // Adds the CanvasSystem component.
+            canvasSystem.SpawnInGameCanvas(); // Spawns the in-game canvas.
+
+            // [Debuggers and Helpers]
+            GameObject debuggersAndHelpersGO = new GameObject("[Debuggers and Helpers]"); // Creates the empty gameobject.
+            debuggersAndHelpersGO.transform.parent = managersAndSystemsGO.transform;      // Make it a child of the root gameobject.
+
+            // [OnScreenDebugSystem]
+            GameObject onScreenDebugSystemGO = new GameObject("[OnScreenDebugSystem]"); // Creates the empty gameobject.
+            onScreenDebugSystemGO.AddComponent<OnScreenDebugSystem>();                  // Adds the OnScreenDebugSystem component.
+            onScreenDebugSystemGO.transform.parent = debuggersAndHelpersGO.transform;    // Make it a child of the "[Debuggers and Helpers]" go.
+
+
+
 
 
 
             #endregion
-            
+
             DontDestroyOnLoad(managersAndSystemsGO);
         }
 

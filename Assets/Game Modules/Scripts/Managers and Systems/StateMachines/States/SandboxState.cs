@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class SandboxState : GameBaseState
+public class SandboxState : GameState
 {
     //Constructor
-    public SandboxState(GameStateMachine currentContext, bool isRoot) : base(currentContext, isRoot)
+    public SandboxState(BaseStateMachine<GameState> currentContext, bool isRoot) : base(currentContext, isRoot)
     {
 
     }
@@ -13,7 +13,7 @@ public class SandboxState : GameBaseState
         Debug.LogWarning("Entered State : SandboxState, Sub State");
     }
 
-    public override void UpdateState() { }
+    public override void Tick() { }
 
     public override void ExitState() { }
 

@@ -149,7 +149,7 @@ Material:
     - _HorizonColorDay: {r: 0.27901387, g: 0.62264144, b: 0.5803083, a: 1}
     - _HorizonColorNight: {r: 0.105882354, g: 0.3764706, b: 0.44313726, a: 1}
     - _HorizonColorOutput: {r: 0, g: 0, b: 0, a: 0}
-    - _MainLightDirection: {r: 0.4054348, g: 0.89244777, b: -0.197888, a: 0}
+    - _MainLightDirection: {r: 0.39046156, g: -0.14428695, b: -0.90924203, a: 0}
     - _NormalizedAxis: {r: 0, g: 0, b: 0, a: 0}
     - _SkyColor: {r: 0.10849057, g: 0.2685586, b: 0.4339623, a: 1}
     - _SkyColorDay: {r: 0, g: 0.6135034, b: 0.9716981, a: 1}

@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Global tracking of the game state.
-/// </summary>
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager instance;
@@ -13,49 +10,35 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("GameStateManager.Initialize()");
 
-        instance = this;                                    // Singleton instance.
+        instance = this;
 
-        stateMachine = new GameStateMachine(null, new GameStateFactory());              // Instantiate the GameStateMachine
+        var factory = new GameStateFactory();
+        stateMachine = new GameStateMachine(null, factory);
 
-        #region Determine the initial state
-
-        // Check the current scene and set the initial state accordingly.
         switch (SceneManager.GetActiveScene().name)
         {
             case "SplashSequence":
-                stateMachine.ChangeState(new PreGameState(stateMachine, true));  // Set the initial state to PreGameState
-                return;
-            case "SampleScene":
-                stateMachine.ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
-                return;
-            default:
-                stateMachine.ChangeState(new SandboxState(stateMachine, true)); // Set the initial state to Sandbox, meaning no story will be run.
-                Debug.LogWarning($"GameStateManager.Initialize() - Unknown scene '{SceneManager.GetActiveScene().name}' detected. Defaulting to PreGameState.");
+                stateMachine.ChangeState(factory.PreGameState(stateMachine));
                 break;
-        }   
-
-        #endregion
+            case "SampleScene":
+                stateMachine.ChangeState(factory.SandboxState(stateMachine));
+                break;
+            default:
+                stateMachine.ChangeState(factory.SandboxState(stateMachine));
+                Debug.LogWarning($"GameStateManager.Initialize() - Unknown scene '{SceneManager.GetActiveScene().name}' detected. Defaulting to SandboxState.");
+                break;
+        }
     }
 
-    public void Update()
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Update()
     {
         stateMachine.GetRootState()?.CascadeTick();
     }
-
-    /* THIS WHOLE THING SHOULD BE INSIDE STATE MACHINE IF WE'RE GOING THROUGH THE GENERIC ROUTE
-     public static void ChangeState(GameState newState)
-    {
-        Debug.Log($"GameStateManager.ChangeState (new State = {newState});");
-
-        if (instance?.stateMachine?.CurrentState == null)
-            return;
-
-        var current = instance.stateMachine.CurrentState;
-
-        // Let the current state decide how to switch
-        current.SwitchStates(newState);
-    }
-    */
 
     public static GameStateFactory GetFactory()
     {
@@ -64,6 +47,6 @@ public class GameStateManager : MonoBehaviour
             Debug.LogError("GameStateManager.GetFactory() - GameStateMachine is not initialized.");
             return null;
         }
-        return instance.stateMachine.factory;
+        return (GameStateFactory)instance.stateMachine.factory;
     }
 }

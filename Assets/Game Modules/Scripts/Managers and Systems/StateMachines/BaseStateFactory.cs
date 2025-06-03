@@ -1,7 +1,6 @@
-public class BaseStateFactory <T> where T : BaseState
+public class BaseStateFactory<T> where T : BaseState<T>
 {
-    public BaseStateFactory ()
+    public BaseStateFactory()
     {
-
     }
 }

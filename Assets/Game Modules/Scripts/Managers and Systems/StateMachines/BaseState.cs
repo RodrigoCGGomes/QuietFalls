@@ -1,23 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-public abstract class BaseState
+public abstract class BaseState<T> where T : BaseState<T>
 {
+    protected BaseStateMachine<T> Context { get; }
+    protected object Factory { get; }
+    public List<BaseState<T>> subStateList { get; protected set; }
+    public BaseState<T> CurrentSuperState { get; protected set; }
 
-    public StateInfo stateInfo; // Information about the state, such as name and description
-
-    protected object Context { get; } // State machine (GameStateMachine, PlayerStateMachine, etc.)
-    protected object Factory { get; } // Factory for creating states
-    public List<BaseState> subStateList { get; protected set; }
-    public BaseState CurrentSuperState { get; protected set; }
-
-    protected BaseState(BaseStateMachine<BaseState> context, bool isRoot)
+    protected BaseState(BaseStateMachine<T> context, bool isRoot)
     {
         Context = context;
         Factory = GetFactory(context);
+        subStateList = new List<BaseState<T>>();
     }
 
-    protected virtual object GetFactory(object context)
+    protected virtual object GetFactory(BaseStateMachine<T> context)
     {
         throw new InvalidOperationException("GetFactory must be implemented by derived state classes.");
     }
@@ -27,10 +25,6 @@ public abstract class BaseState
     public abstract void ExitState();
     public virtual void InitializeSubState() { }
 
-
-    /// <summary>
-    /// CascadeTick is used to call the abstract Tick on the current state and all sub-states recursively.
-    /// </summary>
     public void CascadeTick()
     {
         Tick();
@@ -39,6 +33,4 @@ public abstract class BaseState
             subState.CascadeTick();
         }
     }
-
-
 }

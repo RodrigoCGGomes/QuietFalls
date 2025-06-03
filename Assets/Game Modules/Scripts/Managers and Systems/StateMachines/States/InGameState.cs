@@ -4,7 +4,7 @@ public class InGameState : GameState
 {
     public InGameState(BaseStateMachine<GameState> context, bool isRoot = false) : base(context, isRoot)
     {
-        stateInfo = new StateInfo { stateName = "InGame", stateDescription = "Main gameplay state" };
+        
     }
 
     public override void EnterState()
@@ -16,5 +16,5 @@ public class InGameState : GameState
     public override void Tick() { }
 
     public override void ExitState() { }
-
 }
+

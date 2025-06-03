@@ -5,7 +5,7 @@ public class ControllingCharacter : GameState
 {
     public ControllingCharacter(BaseStateMachine<GameState> context, bool isRoot) : base(context, isRoot)
     {
-        stateInfo = new StateInfo { stateName = "ControllingCharacter", stateDescription = "Player controlling character" };
+        
     }
 
     public override void EnterState()

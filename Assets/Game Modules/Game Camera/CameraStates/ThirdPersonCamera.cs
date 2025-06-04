@@ -335,7 +335,6 @@ public class ThirdPersonCamera : CameraState
             currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.CutSceneState());
         }*/
         Debug.LogWarning("Here we had a code that changed the GameState to CutSceneState");
-
     }
     #endregion
     #endregion

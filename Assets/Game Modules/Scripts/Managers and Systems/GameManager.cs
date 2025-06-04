@@ -36,7 +36,7 @@ namespace GameModules.GameManagers
 
             SpawnGameManagers();    
             SetUpGameManagers();    
-            OnEverySceneLoad();     
+            OnEverySceneLoad();
         }
 
         /// <summary>
@@ -124,15 +124,8 @@ namespace GameModules.GameManagers
             GameObject onScreenDebugSystemGO = new GameObject("[OnScreenDebugSystem]"); // Creates the empty gameobject.
             onScreenDebugSystemGO.AddComponent<OnScreenDebugSystem>();                  // Adds the OnScreenDebugSystem component.
             onScreenDebugSystemGO.transform.parent = debuggersAndHelpersGO.transform;    // Make it a child of the "[Debuggers and Helpers]" go.
-
-
-
-
-
-
             #endregion
-
-            DontDestroyOnLoad(managersAndSystemsGO);
+            DontDestroyOnLoad(managersAndSystemsGO);    // Makes the container scene-persistent
         }
 
         /// <summary>

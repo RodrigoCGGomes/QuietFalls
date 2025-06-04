@@ -1,9 +1,11 @@
+using UnityEngine;
+
 public class BaseStateMachine<T> where T : BaseState<T>
 {
     public T CurrentState { get; private set; }
     public BaseStateFactory<T> factory { get; set; }
-
     public StateMachineInfo stateMachineInfo;
+    
 
     public BaseStateMachine(T initialState, BaseStateFactory<T> _factory)
     {
@@ -14,6 +16,7 @@ public class BaseStateMachine<T> where T : BaseState<T>
 
     public void ChangeState(T newState)
     {
+        Debug.LogWarning($"Some StateMachine went ChangeState : {newState}");
         if (CurrentState != null)
         {
             CurrentState.ExitState();
@@ -25,5 +28,10 @@ public class BaseStateMachine<T> where T : BaseState<T>
     public T GetRootState()
     {
         return CurrentState;
+    }
+    
+    public BaseStateFactory<T> GetFactory()
+    {
+        return factory;
     }
 }

@@ -105,16 +105,21 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudDensity: 2
+    - _CloudContrast: 3
+    - _CloudDensity: 0.823
+    - _CloudHeight: 1.85
+    - _CloudOpacity: 0.21
+    - _CloudSpeedMultiplier: 0.15
+    - _CloudThickness: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DayNightSlider: 0.461
+    - _DayNightSlider: 0.215
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _ExposureMultiplier: 1
+    - _ExposureMultiplier: 1.28
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -131,8 +136,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _StarHeight: 277.7
-    - _StarPower: 33.1
+    - _StarHeight: 298
+    - _StarPower: 28.4
     - _StarsIntensity: 1
     - _SunIntensity: 36
     - _SunSize: 0.026
@@ -148,8 +153,8 @@ Material:
     - _HorizonColor: {r: 0.61489856, g: 0.8738856, b: 0.9245283, a: 1}
     - _HorizonColorDay: {r: 0.27901387, g: 0.62264144, b: 0.5803083, a: 1}
     - _HorizonColorNight: {r: 0.105882354, g: 0.3764706, b: 0.44313726, a: 1}
-    - _HorizonColorOutput: {r: 0, g: 0, b: 0, a: 0}
-    - _MainLightDirection: {r: 0.47002265, g: -0.55581176, b: -0.68567675, a: 0}
+    - _HorizonColorOutput: {r: 0.5377358, g: 0.28155035, b: 0.28155035, a: 0}
+    - _MainLightDirection: {r: 0.74073756, g: 0.4491651, b: -0.4995588, a: 0}
     - _NormalizedAxis: {r: 0, g: 0, b: 0, a: 0}
     - _SkyColor: {r: 0.10849057, g: 0.2685586, b: 0.4339623, a: 1}
     - _SkyColorDay: {r: 0, g: 0.6135034, b: 0.9716981, a: 1}

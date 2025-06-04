@@ -30,7 +30,7 @@ public abstract class BaseState<T> where T : BaseState<T>
         Tick();
         foreach (var subState in subStateList)
         {
-            subState.CascadeTick();
+            subState?.CascadeTick();
         }
     }
 }

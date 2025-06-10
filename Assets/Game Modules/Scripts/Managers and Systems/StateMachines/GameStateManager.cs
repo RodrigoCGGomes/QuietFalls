@@ -10,45 +10,54 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("GameStateManager.Initialize()");
 
-        instance = this;
+        instance = this;    // Set the singleton instance
 
-        var factory = new GameStateFactory();
+        #region StateMachine Instantiation
+        GameStateFactory factory = new GameStateFactory();
+        //StateMachineInfo info = new StateMachineInfo("Game State Machine");
         stateMachine = new GameStateMachine(null, factory);
-        DetermineInitialState();
+        stateMachine.ChangeState(DetermineInitialState());
+        #endregion
     }
 
     #region MonoBehaviour Methods
     private void Update()
     {
-        stateMachine.GetRootState()?.CascadeTick();
+        if (stateMachine != null)
+        {
+            stateMachine.GetRootState()?.CascadeTick();
+        }
     }
     #endregion
 
     #region Private Methods
-    private void DetermineInitialState()
+    private GameState DetermineInitialState()
     {
-        var factory = (GameStateFactory)stateMachine.GetFactory();
-        var activeScene = SceneManager.GetActiveScene().name;
-        var logMessage = $"GameStateManager.DetermineInitialState() : Scene name is '{activeScene}', therefore decided for ";
+        GameState resultingState;
+        GameStateFactory factory = (GameStateFactory)stateMachine.GetFactory();
+        string activeScene = SceneManager.GetActiveScene().name;
+        string logMessage = $"GameStateManager.DetermineInitialState() : Scene name is '{activeScene}', therefore decided for ";
 
         switch (activeScene)
         {
             case "SplashSequence":
-                stateMachine.ChangeState(factory.PreGameState(stateMachine));
+                resultingState = factory.PreGameState(stateMachine);
                 logMessage += "PreGameState";
                 break;
             case "SampleScene":
-                stateMachine.ChangeState(factory.SandboxState(stateMachine));
+                resultingState = factory.SandboxState(stateMachine);
                 logMessage += "SandboxState";
                 break;
             default:
-                stateMachine.ChangeState(factory.SandboxState(stateMachine));
+                resultingState = factory.SandboxState(stateMachine);
                 logMessage += "PreGameState";
                 break;
         }
 
         logMessage += "as the initial state.";
         Debug.LogWarning(logMessage);
+
+        return resultingState;
     }
     #endregion
 

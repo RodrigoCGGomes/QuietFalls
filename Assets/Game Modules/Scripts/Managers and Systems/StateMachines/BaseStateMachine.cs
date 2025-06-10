@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BaseStateMachine<T> where T : BaseState<T>
@@ -5,13 +6,20 @@ public class BaseStateMachine<T> where T : BaseState<T>
     public T CurrentState { get; private set; }
     public BaseStateFactory<T> factory { get; set; }
     public StateMachineInfo stateMachineInfo;
-    
 
-    public BaseStateMachine(T initialState, BaseStateFactory<T> _factory)
+    public event Action<StateMachineInfo> OnStateEntered;
+
+    public BaseStateMachine(T _initialState, BaseStateFactory<T> _factory)
     {
         factory = _factory;
-        ChangeState(initialState);
-        stateMachineInfo = new StateMachineInfo();
+        if (_initialState != null)
+        {
+            ChangeState(_initialState);
+        }
+        else
+        { 
+            Debug.LogWarning($"BaseStateMachine: Initial state is null, cannot change state.");
+        }
     }
 
     public void ChangeState(T newState)
@@ -23,6 +31,7 @@ public class BaseStateMachine<T> where T : BaseState<T>
         }
         CurrentState = newState;
         CurrentState?.EnterState();
+        OnStateEntered?.Invoke(stateMachineInfo);
     }
 
     public T GetRootState()

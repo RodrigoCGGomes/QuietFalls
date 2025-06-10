@@ -30,12 +30,12 @@ namespace GameModules.GameManagers
             //Standard singleton check.
             if (instance != null)
             {
-                Debug.LogError("Somehow more than one GameInputManager instance exists.");
+                Debug.LogError("Somehow more than one GameManager instance exists.");
                 return;
             }
 
             SpawnGameManagers();    
-            SetUpGameManagers();    
+            SetUpGameManagers();
             OnEverySceneLoad();
         }
 

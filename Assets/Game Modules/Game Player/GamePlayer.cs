@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class is attached to the player prefab to make it playable.
@@ -24,8 +23,6 @@ public class GamePlayer : CharacterEngine
     #region MonoBehaviour Calls
     private void OnEnable()
     {
-        //Time.timeScale = 0.1f;
-
         //Create the state machine
         stateMachine = new PlayerStateMachine(this);
 

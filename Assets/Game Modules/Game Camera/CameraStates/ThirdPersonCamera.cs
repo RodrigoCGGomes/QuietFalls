@@ -53,7 +53,7 @@ public class ThirdPersonCamera : CameraState
             orbitZoomSpeed = 8f,
             minPitchAngle = -70f,
             maxPitchAngle = 60f,
-            minCameraDist = 4f,
+            minCameraDist = 1f,
             maxCameraDist = 7f,
             sidewaysRatioMultiplier = 0.08f
         };
@@ -334,7 +334,10 @@ public class ThirdPersonCamera : CameraState
             var currentSubState = GameStateManager.instance.stateMachine.CurrentSubState;
             currentSubState.SwitchStates(GameStateManager.instance.stateMachine.factory.CutSceneState());
         }*/
-        Debug.LogWarning("Here we had a code that changed the GameState to CutSceneState");
+        if (context.phase == InputActionPhase.Started)
+        { 
+            Debug.LogWarning("Here we had a code that changed the GameState to CutSceneState");
+        }
     }
     #endregion
     #endregion

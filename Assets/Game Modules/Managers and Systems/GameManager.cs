@@ -18,6 +18,7 @@ namespace GameModules.GameManagers
         public PlayerInputManager playerInputManager;
         private GamePreferencesSystem preferencesSystem;
         public GameDebugger gameDebugger;
+        public GameMenuManager menuManager;
         #endregion
 
         #region Entry Points
@@ -37,6 +38,11 @@ namespace GameModules.GameManagers
             SpawnManagersAndSystems();
             InitializeManagersAndSystems();
             OnEverySceneLoad();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Debug.LogWarning($"Accessed private information from GameMenuManager : {GameMenuManager.GetTestString()}");
+            }
         }
 
         /// <summary>
@@ -101,31 +107,33 @@ namespace GameModules.GameManagers
             playerInputManagerGO.name = "[Player Input Manager]";                                                                   // Gets rid of the '(Clone)' suffix caused by Instantiate.
             playerInputManagerGO.transform.parent = managersContainerGO.transform;                                                  // Makes it a child of the "[Managers]" go.
 
+            // [Menu Manager]
+            GameObject menuManagerGO = new GameObject("[Menu Manager WIP]");                // Creates the empty gameobject.
+            menuManagerGO.transform.parent = managersContainerGO.transform;                 // Makes it a child of the container Game Object. 
+            GameMenuManager menuManager = menuManagerGO.AddComponent<GameMenuManager>();    // Adds the CanvasSystem component.
+            instance.menuManager = menuManager;
+
+
             // [Systems]
             GameObject systemsContainerGO = new GameObject("[Systems]");            // Creates the empty gameobject.
-            systemsContainerGO.transform.parent = managersAndSystemsGO.transform;   // Make it a child of the root gameobject.
+            systemsContainerGO.transform.parent = managersAndSystemsGO.transform;   // Makes it a child of the container Game Object.
 
             // [Preferences System]
-            GameObject gamePreferencesSystemGO = new GameObject("[Preferences System]");                      // Creates the empty gameobject.
-            instance.preferencesSystem = gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>();
-            gamePreferencesSystemGO.transform.parent = systemsContainerGO.transform;
-
-            // [Canvas System]
-            GameObject canvasSystemGO = new GameObject("[Canvas System]"); // Creates the empty gameobject.
-            canvasSystemGO.transform.parent = systemsContainerGO.transform; // Make it a child of the "[Systems]" go.   
-            CanvasSystem canvasSystem = canvasSystemGO.AddComponent<CanvasSystem>();                  // Adds the CanvasSystem component.
-            canvasSystem.SpawnInGameCanvas(); // Spawns the in-game canvas.
+            GameObject gamePreferencesSystemGO = new GameObject("[Preferences System]");                // Creates the empty gameobject.
+            instance.preferencesSystem = gamePreferencesSystemGO.AddComponent<GamePreferencesSystem>(); // Adds the GamePreferencesSystem component.
+            gamePreferencesSystemGO.transform.parent = systemsContainerGO.transform;                    // Makes it a child of the container Game Object.
 
             // [Debuggers and Helpers]
-            GameObject debuggersAndHelpersGO = new GameObject("[Debuggers and Helpers]"); // Creates the empty gameobject.
-            debuggersAndHelpersGO.transform.parent = managersAndSystemsGO.transform;      // Make it a child of the root gameobject.
-            instance.gameDebugger = debuggersAndHelpersGO.AddComponent<GameDebugger>(); // Adds the GameDebugger component.
+            GameObject debuggersAndHelpersGO = new GameObject("[Debuggers and Helpers]");   // Creates the empty gameobject.
+            debuggersAndHelpersGO.transform.parent = managersAndSystemsGO.transform;        // Make it a child of the root gameobject.
+            instance.gameDebugger = debuggersAndHelpersGO.AddComponent<GameDebugger>();     // Adds the GameDebugger component.
 
             // [OnScreenDebugSystem]
             GameObject onScreenDebugSystemGO = new GameObject("[OnScreenDebugSystem]"); // Creates the empty gameobject.
             onScreenDebugSystemGO.AddComponent<OnScreenDebugSystem>();                  // Adds the OnScreenDebugSystem component.
-            onScreenDebugSystemGO.transform.parent = debuggersAndHelpersGO.transform;    // Make it a child of the "[Debuggers and Helpers]" go.
+            onScreenDebugSystemGO.transform.parent = debuggersAndHelpersGO.transform;   // Makes it a child of the container Game Object.
             #endregion
+
             DontDestroyOnLoad(managersAndSystemsGO);    // Makes the container scene-persistent
         }
 
@@ -140,6 +148,7 @@ namespace GameModules.GameManagers
             GameManager.instance.stateManager.Initialize();
             GameManager.instance.playerManager.Initialize();
             GameManager.instance.preferencesSystem.Initialize();
+            GameManager.instance.menuManager.Initialize();
         } 
         #endregion
     }

@@ -16,7 +16,7 @@ namespace GameModules.Systems
         public LanguageSettings languageSettings;
 
         /// <summary>
-        /// Initial setup of the Preference System. Called only once by GameManager.SetUpGameManagers() at the start of the game.
+        /// Initial setup of the Preferences System. Called only once by GameManager.SetUpGameManagers() at the start of the game.
         /// </summary>
         public void Initialize()
         {

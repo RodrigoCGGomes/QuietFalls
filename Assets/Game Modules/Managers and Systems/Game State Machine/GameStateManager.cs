@@ -34,22 +34,22 @@ public class GameStateManager : MonoBehaviour
     private GameState DetermineInitialState()
     {
         GameState resultingState;
-        GameStateFactory factory = (GameStateFactory)stateMachine.GetFactory();
+        GameStateFactory factory = (GameStateFactory)stateMachine.GetFactory(); // ATTENTION, CHANGE, WIP, REMEMBER, DON'T FORGET, CHANGE THE WAY SO THERE IS NO REASON TO REFERENCE IT'S FACTORY
         string activeScene = SceneManager.GetActiveScene().name;
         string logMessage = $"GameStateManager.DetermineInitialState() : Scene name is '{activeScene}', therefore decided for ";
 
         switch (activeScene)
         {
             case "SplashSequence":
-                resultingState = factory.PreGameState(stateMachine);
+                resultingState = GameStateFactory.PreGameState(stateMachine);
                 logMessage += "PreGameState";
                 break;
             case "SampleScene":
-                resultingState = factory.SandboxState(stateMachine);
+                resultingState = GameStateFactory.SandboxState(stateMachine);
                 logMessage += "SandboxState";
                 break;
             default:
-                resultingState = factory.SandboxState(stateMachine);
+                resultingState = GameStateFactory.SandboxState(stateMachine);
                 logMessage += "PreGameState";
                 break;
         }

@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 1.2, g: 0.93101984, b: 0.7987345, a: 2}
+  m_FogColor: {r: 1.206, g: 0.9370198, b: 0.80473447, a: 2}
   m_FogMode: 3
-  m_FogDensity: 0.0028000001
+  m_FogDensity: 0.0082
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.030838378, g: 0.22937568, b: 0.5943396, a: 1}
@@ -3470,7 +3470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24914da5a74d0c34c91e6ca4d23fa9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogAmount: 0.014
+  fogAmount: 0.041
   horizonGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3502,7 +3502,7 @@ MonoBehaviour:
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
   fogLuminosity: 1
-  fogWashOut: 0.2
+  fogWashOut: 0.206
   skyMaterial: {fileID: 2100000, guid: 05b43e618a59d494db816783f9394bca, type: 2}
   lightComponent: {fileID: 410087040}
   sunRotate: {fileID: 410087043}

@@ -1,8 +1,34 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// /// DEPRECATED: This class is deprecated and will be removed in the future.
+/// This class reads DebuggerAndHelper's DebugVariableList and displays the values screen texts.
+/// </summary>
 public class OnScreenDebug : MonoBehaviour
 {
     public DebugItems debugItems;
@@ -61,6 +87,7 @@ public class DebugItems
         }
     }
 
+    /*
     public void RelayStateEntered(StateMachineInfo _info)
     {
         bool hasFoundMatchingId = false;
@@ -83,5 +110,6 @@ public class DebugItems
         }
 
     }
+    */
 }
 

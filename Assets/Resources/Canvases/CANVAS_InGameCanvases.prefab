@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 7263789522369380354}
   - component: {fileID: 2593188256213768883}
   - component: {fileID: 6547424404069489799}
+  - component: {fileID: 4403654766580254476}
   m_Layer: 5
   m_Name: Text_Line_01
   m_TagString: Untagged
@@ -239,6 +240,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4403654766580254476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2961910825013948964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622f2c591e1dc31489d6d90a1b2a89ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: gsm_cur_state
+  optionalPrefix: 'Game State Machine : '
 --- !u!1 &3337044350620208791
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7854778452856355636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -386,6 +401,7 @@ GameObject:
   - component: {fileID: 2043284682570123063}
   - component: {fileID: 1547192473017767580}
   - component: {fileID: 2043418909256543592}
+  - component: {fileID: 1410641926908126321}
   m_Layer: 5
   m_Name: Text_Line_02
   m_TagString: Untagged
@@ -440,7 +456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: editor-text
+  m_text: TESTEEEEEE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b30d02159e150242907ec90edaa9d2a, type: 2}
   m_sharedMaterial: {fileID: 4705741492668701964, guid: 8b30d02159e150242907ec90edaa9d2a, type: 2}
@@ -511,6 +527,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1410641926908126321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458387724141312706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622f2c591e1dc31489d6d90a1b2a89ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableName: burger
+  optionalPrefix: 'prefix:'
 --- !u!1 &3621770802828269361
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7940210007938691421
 RectTransform:
   m_ObjectHideFlags: 0
@@ -740,7 +770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6224649044480126367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1429,7 +1459,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8507274277999487224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 721c7855149da1d43b7038f6c9f6358c, type: 3}
   m_Name: 
@@ -1438,14 +1468,24 @@ MonoBehaviour:
     itemList:
     - itemTitle: Game State Machine
       textComponent: {fileID: 6547424404069489799}
+      stateMachineId: 0
+      stateHierarchyText: 
     - itemTitle: Player State Machine
       textComponent: {fileID: 2043418909256543592}
+      stateMachineId: 0
+      stateHierarchyText: 
     - itemTitle: Camera State Machine
       textComponent: {fileID: 6387078939786468047}
+      stateMachineId: 0
+      stateHierarchyText: 
     - itemTitle: 
       textComponent: {fileID: 8400596345927673926}
+      stateMachineId: 0
+      stateHierarchyText: 
     - itemTitle: 
       textComponent: {fileID: 854320955988936029}
+      stateMachineId: 0
+      stateHierarchyText: 
 --- !u!1 &9218545284571173489
 GameObject:
   m_ObjectHideFlags: 0

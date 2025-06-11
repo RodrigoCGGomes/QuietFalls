@@ -105,12 +105,12 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudContrast: 3.8
-    - _CloudDensity: 0.933
-    - _CloudHeight: 1.11
-    - _CloudOpacity: 0.03
-    - _CloudSpeedMultiplier: 0.48
-    - _CloudThickness: 0.191
+    - _CloudContrast: 10.6
+    - _CloudDensity: 0.924
+    - _CloudHeight: 5.47
+    - _CloudOpacity: 0.14
+    - _CloudSpeedMultiplier: 0.98
+    - _CloudThickness: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DayNightSlider: 0.215

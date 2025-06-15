@@ -299,7 +299,7 @@ public class ThirdPersonCamera : CameraState
     {
         float mouseStep = 1f;
 
-        GameDebugger.WriteVariable("burger", "cheese");
+        // GameDebugger.WriteVariable("burger", "cheese");
 
         // I am aware that storing the scheme in a string is unreliable, I will change it later. 
         string scheme = context.control.device switch
@@ -340,7 +340,7 @@ public class ThirdPersonCamera : CameraState
         if (context.phase == InputActionPhase.Started)
         { 
             Debug.LogWarning("Here we had a code that changed the GameState to CutSceneState");
-            GameStateMachine.instance.ChangeState(new InGameState(GameStateMachine.instance));
+            GameStateMachine.instance.ChangeState(new InGameState(true));
         }
     }
     #endregion

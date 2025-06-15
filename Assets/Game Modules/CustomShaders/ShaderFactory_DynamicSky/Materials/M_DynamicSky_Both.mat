@@ -110,7 +110,7 @@ Material:
     - _CloudHeight: 5.47
     - _CloudOpacity: 0.14
     - _CloudSpeedMultiplier: 0.98
-    - _CloudThickness: 1
+    - _CloudThickness: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DayNightSlider: 0.215

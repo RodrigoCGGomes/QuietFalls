@@ -17,7 +17,7 @@ public class GameMenuManager : MonoBehaviour
         instance = this;
         SpawnGlobalCanvas();
         instance.testField = "banana";
-        stateMachine = new MenuStateMachine(MenuStateFactory.InGameState(), )
+        stateMachine = new MenuStateMachine(MenuStateFactory.InGameState(),new MenuStateFactory(), BaseStateMachineType.MenuSM);
     }
 
     /// <summary>

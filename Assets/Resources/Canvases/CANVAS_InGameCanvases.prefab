@@ -456,7 +456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TESTEEEEEE
+  m_text: editor-text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b30d02159e150242907ec90edaa9d2a, type: 2}
   m_sharedMaterial: {fileID: 4705741492668701964, guid: 8b30d02159e150242907ec90edaa9d2a, type: 2}
@@ -539,8 +539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622f2c591e1dc31489d6d90a1b2a89ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: burger
-  optionalPrefix: 'prefix:'
+  variableName: menu-state-machine
+  optionalPrefix: 'Menu State Machine: '
 --- !u!1 &3621770802828269361
 GameObject:
   m_ObjectHideFlags: 0
